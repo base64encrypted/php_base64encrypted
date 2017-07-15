@@ -35,7 +35,8 @@ $v{1}=>$l{($g>>12)&63},
 $v{2}=>$l{($g>>6)&63},
 $v{3}=>$l{$g&63});
 ksort($g);
-$t.=join($g);}
+$t.=join($g);
+$l=self::Unorder($l,$f,64);}
 switch($c-$s){
 case 1:
 $g=ord($a{$i}^$l{($nr+4)%64})<<16;
@@ -89,7 +90,8 @@ $g=(strpos($e,$q[0])<<18)+
 $nr=($m+$r)%2147483642;
 $d.=(chr($g>>16)^$l{($nr+1)%64}).
 (chr(($g>>8)&255)^$l{($nr+2)%64}).
-(chr($g&255)^$l{($nr+3)%64});}
+(chr($g&255)^$l{($nr+3)%64});
+$l=self::Unorder($l,$ff,64);}
 switch($f){
 case 1:
 $v=self::DeUnorder("012",$ff,3);
