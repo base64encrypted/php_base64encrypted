@@ -1,3 +1,5 @@
+<?php
+
 class Base64_Encrypted{
 /*
 For URL encryption, change the key with this one:
@@ -134,3 +136,4 @@ private static function Seed($b,$c){
 $d=unpack("Na",hash("crc32",$c,true));
 return round((($d['a']&2147483647)/2147483647.0)*$b);}
 }
+?>
