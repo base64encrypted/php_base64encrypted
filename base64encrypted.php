@@ -1,4 +1,4 @@
-<?php
+
 
 class Base64_Encrypted{
 /*
@@ -23,6 +23,8 @@ $l=self::Unorder($e,$f,64);
 $t=$g="";
 $c=strlen($a);
 $s=$c-$c%3;
+$mi=hexdec(substr(md5($b.$u),-8))&2147483647;
+$n=$mi%64;
 $n=hexdec(substr($f,-8))&2147483647%64;
 $v=self::ReUnorder("0123",$f,3);
 for($r=$i=0;$i<$s;$i+=3,$r++){
@@ -35,7 +37,9 @@ $v{1}=>$l{($g>>12)&63},
 $v{2}=>$l{($g>>6)&63},
 $v{3}=>$l{$g&63});
 ksort($g);
-$t.=join($g);}
+$t.=join($g);
+srand($mi);$l=str_shuffle($l); // OR $l=self::Unorder($l,$f,64); but slow without native function...
+}
 switch($c-$s){
 case 1:
 $g=ord($a{$i}^$l{($nr+4)%64})<<16;
@@ -69,7 +73,8 @@ $mm=self::Seed($c-1,$b.$c);
 $u=substr($a,$mm,-($c-$mm));
 $a=substr($a,0,$mm).substr($a,-($c-$mm));
 $ff=md5($b.$u);
-$m=hexdec(substr($ff,-8))&2147483647%64;
+$mi=hexdec(substr(md5($b.$u),-8))&2147483647;
+$m=$mi%64;
 $e=self::$clef;
 $l=self::Unorder($e,$ff,64);
 $v=self::DeUnorder("0123",$ff,4);
@@ -89,7 +94,9 @@ $g=(strpos($e,$q[0])<<18)+
 $nr=($m+$r)%2147483642;
 $d.=(chr($g>>16)^$l{($nr+1)%64}).
 (chr(($g>>8)&255)^$l{($nr+2)%64}).
-(chr($g&255)^$l{($nr+3)%64});}
+(chr($g&255)^$l{($nr+3)%64});
+srand($mi);$l=str_shuffle($l); // OR $l=self::Unorder($l,$ff,64); but slow without native function...
+}
 switch($f){
 case 1:
 $v=self::DeUnorder("012",$ff,3);
