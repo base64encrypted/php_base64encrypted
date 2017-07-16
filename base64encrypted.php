@@ -1,4 +1,4 @@
-
+<?php
 
 class Base64_Encrypted{
 /*
