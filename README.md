@@ -5,6 +5,6 @@ Example:
 
 Base64_Encrypted::Crypter("Hello World","My Key",4);
 
-Base64_Encrypted::Decrypter("+7jvwpjkGcNPuPn4jpp","My Key",4);
+Base64_Encrypted::Decrypter("fIcnPNUNhoUnuLqdRymoLZ","My Key",4);
 
 Ref: http://inseparables.j-ad.net/archives/24/
