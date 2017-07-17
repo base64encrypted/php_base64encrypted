@@ -23,7 +23,7 @@ $s=$c-$c%3;
 $mi=hexdec(substr($f,-8))&2147483647;
 $n=$mi%64;
 for($r=$i=0;$i<$s;$i+=3,$r++){
-$r=(int)fmod($r+=$n,59);
+$r=(int)fmod($r+=$n,58);
 $g=(ord($a{$i}^$l{$r+1})<<16)+(ord($a{$i+1}^$l{$r+2})<<8)+(ord($a{$i+2}^$l{$r+3}));
 $t.=$l{$g>>18}.$l{($g>>12)&63}.$l{($g>>6)&63}.$l{$g&63};
 srand($mi);$l=str_shuffle($l); /* OR $l=self::Unorder($l,$f); but slow without native function... */
@@ -61,7 +61,7 @@ while($c%4!==0){$a.="=";$c=strlen($a);$c=$c-4;$f++;}
 for($r=$i=0;$i<$c;$i+=4,$r++){
 $q=$e{strpos($l,$a{$i})}.$e{strpos($l,$a{$i+1})}.$e{strpos($l,$a{$i+2})}.$e{strpos($l,$a{$i+3})};
 $g=(strpos($e,$q{0})<<18)+(strpos($e,$q{1})<<12)+(strpos($e,$q{2})<<6)+(strpos($e,$q{3}));
-$r=(int)fmod($r+=$n,59);
+$r=(int)fmod($r+=$n,58);
 $d.=(chr($g>>16)^$l{$r+1}).(chr(($g>>8)&255)^$l{$r+2}).(chr($g&255)^$l{$r+3});
 srand($mi);$l=str_shuffle($l); /* OR $l=self::Unorder($l,$ff); but slow without native function... */
 }
