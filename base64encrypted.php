@@ -21,7 +21,7 @@ $l=self::Unorder($e,$f);
 $c=strlen($a);
 $s=$c-$c%3;
 $mi=hexdec(substr($f,-8))&2147483647;
-$n=$mi%64;
+$n=$mi%63;
 for($r=$i=0;$i<$s;$i+=3,$r++){
 $r=(int)fmod($r+=$n,58);
 $g=(ord($a{$i}^$l{$r+1})<<16)+(ord($a{$i+1}^$l{$r+2})<<8)+(ord($a{$i+2}^$l{$r+3}));
@@ -53,7 +53,7 @@ $a=substr($a,0,$mm).substr($a,-($c-$mm));
 $e=self::$clef;
 $ff=md5($b.$u);
 $mi=hexdec(substr($ff,-8))&2147483647;
-$n=$mi%64;
+$n=$mi%63;
 $l=self::Unorder($e,$ff);
 $d=$g="";
 $f=0;
