@@ -10,7 +10,7 @@ In this case take care to adapt the regex accordingly (see bold line).
 */
 private static $clef="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
 public static function Crypter($a,$b,$d,$xx=4){
-if($a==""||$b==""||!is_int($xx))return $a;
+if($a==""||$b==""||$d==""||!is_int($xx))return $a;
 $e=self::$clef;
 $u=$t=$g="";
 $lb=self::Unorder($e,mt_rand(0,2147483647).$b);
@@ -43,7 +43,7 @@ public static function Decrypter($a,$b,$d,$xx=4){
 For URL encryption, change the regex with this one:
 if(!preg_match("/^[A-z0-9_-]+$/",$a)||$b=="")return $a;
 */
-if(!preg_match("/^[A-z0-9\/+]+$/",$a)||$b==""||!is_int($xx))return $a;
+if(!preg_match("/^[A-z0-9\/+]+$/",$a)||$b==""||$d==""||!is_int($xx))return $a;
 $c=strlen($a)-$xx;
 $mm=self::Seed($c-1,$b.$c);
 $u=substr($a,$mm,-($c-$mm));
