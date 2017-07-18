@@ -25,7 +25,7 @@ $r=(int)fmod($r+=$n,58);
 $g=(ord($a{$i}^$l{$r+1})<<16)+(ord($a{$i+1}^$l{$r+2})<<8)+(ord($a{$i+2}^$l{$r+3}));
 $ha=$g>>18;$hb=$g>>12;$hc=$g>>6;
 $t.=$l{$ha}.$l{$hb&63}.$l{$hc&63}.$l{$g&63};
-$l=self::Passpass($l,$g>>18,$g>>12,$hc,$g,$r);}
+$l=self::Passpass($l,$ha,$hb,$hc,$g,$r);}
 switch($c-$s){
 case 1:
 $g=ord($a{$i}^$l{$r+4})<<16;
