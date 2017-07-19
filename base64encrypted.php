@@ -56,10 +56,11 @@ $f=0;
 while($c%4!==0){$a.="=";$c=strlen($a);$c=$c-4;$f++;}
 for($r=$i=0;$i<$c;$i+=4,$r++){
 $q=$e{strpos($l,$a{$i})}.$e{strpos($l,$a{$i+1})}.$e{strpos($l,$a{$i+2})}.$e{strpos($l,$a{$i+3})};
-$g=(strpos($e,$q{0})<<18)+(strpos($e,$q{1})<<12)+(strpos($e,$q{2})<<6)+(strpos($e,$q{3}));
-$r=(int)fmod($r+=$n,58);
-$d.=(chr($g>>16)^$l{$r+1}).(chr(($g>>8)&255)^$l{$r+2}).(chr($g&255)^$l{$r+3});
-$l=self::Passpass($l,$g>>18,$g>>12,$g>>6,$g,$r);}
+$ha=strpos($e,$q{0});$hb=strpos($e,$q{1});$hc=strpos($e,$q{2});$hd=strpos($e,$q{3});    
+$g=($ha<<18)+($hb<<12)+($hc<<6)+$hd;    
+$r=(int)fmod($r+=$n,58);    
+$d.=(chr($g>>16)^$l{$r+1}).(chr(($g>>8)&255)^$l{$r+2}).(chr($g&255)^$l{$r+3});    
+$l=self::Passpass($l,$ha,$hb,$hc,$hd,$r);}
 switch($f){
 case 1:
 $q=$e{strpos($l,$a{$i})}.$e{strpos($l,$a{$i+1})}.$e{strpos($l,$a{$i+2})};
