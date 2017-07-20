@@ -77,7 +77,7 @@ private static function Passpass($l,$b,$c,$e,$d,$r){
 $i=$l[$b];$l[$b]=$l[($r+1)&63];$l[($r+1)&63]=$i;
 $i=$l[$c&63];$l[$c&63]=$l[($r+2)&63];$l[($r+2)&63]=$i;
 $i=$l[$e&63];$l[$e&63]=$l[($r+3)&63];$l[($r+3)&63]=$i;
-$i=$l[$d&63];$l[$d&63]=$l[($r+4)&63];$l[($r+4)&63]=$i;
+$i=$l[$d&63];$l[$d&63]=$l[($r+6)&63];$l[($r+6)&63]=$i;
 return $l;}
 private static function Unorder($x,$b,$c=64){
 $w=0;$y=strlen($b);
