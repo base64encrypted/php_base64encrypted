@@ -5,7 +5,7 @@ Example:
 
  Base64_Encrypted::Crypter("Hello World ! My nickname is Boby. Have fun.","My First Key","Anti Force Brute Second Key",4);
  
- Base64_Encrypted::Decrypter("ZdJCVCfVkQPJUzBcTMjKC1Na5f9e1XlYJvJCQLbMVu4TzjhJNni9ShvH7rBtZ5y
+ Base64_Encrypted::Decrypter("NTc98FDFz4UBccU0FukdPV2rYC4CeDcKAJBOi5M70rbxOUQoST5KNSMjpkHGL4s
 ","My First Key","Anti Force Brute Second Key",4);
 
 
