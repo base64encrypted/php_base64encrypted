@@ -21,7 +21,7 @@ $s=$c-$c%3;
 $l=self::Unorder($e,md5($b.$u,true));
 $n=hexdec(substr(md5($d.$u),-8))&255;
 for($ri=$si=$r=$i=0;$i<$s;$i+=3,$r+=5,$si+=7,$ri+=11){
-$r=(int)fmod($r+=$n,255);$si=(int)fmod($si+=$n,63);$ri=(int)fmod($ri+=$n,63);
+$r=(int)fmod($r+=$n,255);$si=(int)fmod($si+=$n,255);$ri=(int)fmod($ri+=$n,255);
 $g=(ord($a{$i}^chr($r+=$n))<<16)+(ord($a{$i+1}^chr($r+=$n))<<8)+(ord($a{$i+2}^chr($r+=$n)));
 $ha=(($g>>18)+($si+=$n))&63;$hb=(($g>>12)+($si+=$n))&63;$hc=(($g>>6)+($si+=$n))&63;$hd=($g+($si+=$n))&63;
 $t.=$l{$ha};$l=self::Passpass($l,$ha,$ri+=$n);
@@ -30,12 +30,15 @@ $t.=$l{$hc};$l=self::Passpass($l,$hc,$ri+=$n);
 $t.=$l{$hd};$l=self::Passpass($l,$hd,$ri+=$n);}
 switch($c-$s){
 case 1:
-$g=ord($a{$i}^chr($r+=$n))<<16;
-$t.=$l{(($g>>18)+($si+=$n))&63}.$l{(($g>>12)+($si+$n))&63};
+$g=ord($a{$i}^chr($r+$n))<<16;
+$he=(($g>>18)+($si+=$n))&63;$t.=$l{$he};$l=self::Passpass($l,$he,$ri+$n);
+$t.=$l{(($g>>12)+($si+$n))&63};
 break;
 case 2:
-$g=(ord($a{$i}^chr($r+=$n))<<16)+(ord($a{$i+1}^chr($r+=$n))<<8);
-$t.=$l{(($g>>18)+($si+=$n))&63}.$l{(($g>>12)+($si+=$n))&63}.$l{(($g>>6)+($si+$n))&63};
+$g=(ord($a{$i}^chr($r+=$n))<<16)+(ord($a{$i+1}^chr($r+$n))<<8);
+$he=(($g>>18)+($si+=$n))&63;$t.=$l{$he};$l=self::Passpass($l,$he,$ri+=$n);
+$hf=(($g>>12)+($si+=$n))&63;$t.=$l{$hf};$l=self::Passpass($l,$hf,$ri+=$n);
+$t.=$l{(($g>>6)+($si+$n))&63};
 break;}
 $c=strlen($t);
 $r=$c-self::Seed($c-1,$b.$c);
@@ -57,22 +60,25 @@ $d=$g="";
 $f=0;
 while($c%4!==0){$a.="=";$c=strlen($a);$c=$c-4;$f++;}
 for($ri=$si=$r=$i=0;$i<$c;$i+=4,$r+=5,$si+=7,$ri+=11){
-$ri=(int)fmod($ri+=$n,63);
+$ri=(int)fmod($ri+=$n,255);
 $ha=strpos($l,$a{$i});$l=self::Passpass($l,$ha,$ri+=$n);
 $hb=strpos($l,$a{$i+1});$l=self::Passpass($l,$hb,$ri+=$n);
 $hc=strpos($l,$a{$i+2});$l=self::Passpass($l,$hc,$ri+=$n);
 $hd=strpos($l,$a{$i+3});$l=self::Passpass($l,$hd,$ri+=$n);
-$si=(int)fmod($si+=$n,63);
+$si=(int)fmod($si+=$n,255);
 $g=(strpos($e,$e{($ha-($si+=$n))&63})<<18)+(strpos($e,$e{($hb-($si+=$n))&63})<<12)+(strpos($e,$e{($hc-($si+=$n))&63})<<6)+strpos($e,$e{($hd-($si+=$n))&63});    
 $r=(int)fmod($r+=$n,255);
 $d.=(chr($g>>16)^chr($r+=$n)).(chr(($g>>8)&255)^chr($r+=$n)).(chr($g&255)^chr($r+=$n));}
 switch($f){
 case 1:
-$g=(strpos($e,$e{(strpos($l,$a{$i})-($si+=$n))&63})<<18)+(strpos($e,$e{(strpos($l,$a{$i+1})-($si+=$n))&63})<<12)+(strpos($e,$e{(strpos($l,$a{$i+2})-($si+=$n))&63})<<6);
+$he=strpos($l,$a{$i});$l=self::Passpass($l,$he,$ri+=$n);
+$hf=strpos($l,$a{$i+1});$l=self::Passpass($l,$he,$ri+$n);
+$g=(strpos($e,$e{($he-($si+=$n))&63})<<18)+(strpos($e,$e{($hf-($si+=$n))&63})<<12)+(strpos($e,$e{(strpos($l,$a{$i+2})-($si+$n))&63})<<6);
 $d.=(chr($g>>16)^chr($r+=$n)).(chr(($g>>8)&255)^chr($r+$n));
 break;
 case 2:
-$g=(strpos($e,$e{(strpos($l,$a{$i})-($si+=$n))&63})<<18)+(strpos($e,$e{(strpos($l,$a{$i+1})-($si+=$n))&63})<<12);
+$he=strpos($l,$a{$i});$l=self::Passpass($l,$he,$ri+$n);
+$g=(strpos($e,$e{($he-($si+=$n))&63})<<18)+(strpos($e,$e{(strpos($l,$a{$i+1})-($si+$n))&63})<<12);
 $d.=chr($g>>16)^chr($r+$n);
 break;}
 return $d;}
