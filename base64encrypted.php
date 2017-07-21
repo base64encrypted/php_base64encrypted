@@ -21,18 +21,18 @@ $s=$c-$c%3;
 $l=self::Unorder($e,md5($b.$u,true));
 $n=hexdec(substr(md5($d.$u),-8))&255;
 for($r=$i=0;$i<$s;$i+=3,$r++){
-$r=(int)fmod($r+=$n,250);
-$g=((ord($a{$i})^($r+1))<<16)+((ord($a{$i+1})^($r+2))<<8)+(ord($a{$i+2})^($r+3));
+$r=(int)fmod($r+=$n,255);
+$g=(ord($a{$i}^chr($r+=$n))<<16)+(ord($a{$i+1}^chr($r+=$n))<<8)+(ord($a{$i+2}^chr($r+=$n)));
 $ha=$g>>18;$hb=$g>>12;$hc=$g>>6;
 $t.=$l{$ha}.$l{$hb&63}.$l{$hc&63}.$l{$g&63};
 $l=self::Passpass($l,$ha,$hb,$hc,$g,$r);}
 switch($c-$s){
 case 1:
-$g=ord($a{$i}^$l{$r+4})<<16;
+$g=ord($a{$i}^chr($r+$n))<<16;
 $t.=$l{$g>>18}.$l{($g>>12)&63};
 break;
 case 2:
-$g=(ord($a{$i}^$l{$r+4})<<16)+(ord($a{$i+1}^$l{$r+5})<<8);
+$g=(ord($a{$i}^chr($r+=$n))<<16)+(ord($a{$i+1}^chr($r+$n))<<8);
 $t.=$l{$g>>18}.$l{($g>>12)&63}.$l{($g>>6)&63};
 break;}
 $c=strlen($t);
@@ -56,28 +56,28 @@ $f=0;
 while($c%4!==0){$a.="=";$c=strlen($a);$c=$c-4;$f++;}
 for($r=$i=0;$i<$c;$i+=4,$r++){
 $q=$e{strpos($l,$a{$i})}.$e{strpos($l,$a{$i+1})}.$e{strpos($l,$a{$i+2})}.$e{strpos($l,$a{$i+3})};
-$ha=strpos($e,$q{0});$hb=strpos($e,$q{1});$hc=strpos($e,$q{2});$hd=strpos($e,$q{3});    
-$g=($ha<<18)+($hb<<12)+($hc<<6)+$hd;    
-$r=(int)fmod($r+=$n,250);    
-$d.=(chr(($g>>16)^($r+1))).(chr((($g>>8)^($r+2))&255)).(chr(($g^($r+3))&255));
+$ha=strpos($e,$q{0});$hb=strpos($e,$q{1});$hc=strpos($e,$q{2});$hd=strpos($e,$q{3});    
+$g=($ha<<18)+($hb<<12)+($hc<<6)+$hd;    
+$r=(int)fmod($r+=$n,255);
+$d.=(chr($g>>16)^chr($r+=$n)).(chr(($g>>8)&255)^chr($r+=$n)).(chr($g&255)^chr($r+=$n));   
 $l=self::Passpass($l,$ha,$hb,$hc,$hd,$r);}
 switch($f){
 case 1:
 $q=$e{strpos($l,$a{$i})}.$e{strpos($l,$a{$i+1})}.$e{strpos($l,$a{$i+2})};
 $g=(strpos($e,$q{0})<<18)+(strpos($e,$q{1})<<12)+(strpos($e,$q{2})<<6);
-$d.=(chr($g>>16)^$l{$r+4}).(chr(($g>>8)&255)^$l{$r+5});
+$d.=(chr($g>>16)^chr($r+=$n)).(chr(($g>>8)&255)^chr($r+$n));
 break;
 case 2:
 $q=$e{strpos($l,$a{$i})}.$e{strpos($l,$a{$i+1})};
 $g=(strpos($e,$q{0})<<18)+(strpos($e,$q{1})<<12);
-$d.=(chr($g>>16)^$l{$r+4});
+$d.=chr($g>>16)^chr($r+$n);
 break;}
 return $d;}
 private static function Passpass($l,$b,$c,$e,$d,$r){
-$i=$l[$b];$l[$b]=$l[($r+1)&63];$l[($r+1)&63]=$i;
-$i=$l[$c&63];$l[$c&63]=$l[($r+2)&63];$l[($r+2)&63]=$i;
-$i=$l[$e&63];$l[$e&63]=$l[($r+3)&63];$l[($r+3)&63]=$i;
-$i=$l[$d&63];$l[$d&63]=$l[($r+6)&63];$l[($r+6)&63]=$i;
+$i=$l[$b];$l[$b]=$l[$r&63];$l[$r&63]=$i;
+$i=$l[$c&63];$l[$c&63]=$l[($r+1)&63];$l[($r+1)&63]=$i;
+$i=$l[$e&63];$l[$e&63]=$l[($r+2)&63];$l[($r+2)&63]=$i;
+$i=$l[$d&63];$l[$d&63]=$l[($r+3)&63];$l[($r+3)&63]=$i;
 return $l;}
 private static function Unorder($x,$b,$c=64){
 $w=0;$y=strlen($b);
