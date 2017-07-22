@@ -15,7 +15,7 @@ $e=self::$clef;
 $u=$t=$g="";
 $lb=self::Unorder($e,mt_rand(0,2147483647).$b);
 $oo=mt_rand(0,255);
-for($i=1;$i<$xx+1;$i++){$fd=$lb{(int)self::Seed(63,chr($oo))};$oo=fmod($oo+=ord($fd)+$i+mt_rand(0,2147483647-(ord($fd)+$i+255)),255);$u.=$fd;}
+for($i=1;$i<$xx+1;$i++){$fd=$lb{(int)self::Seed(63,chr($oo))};$oo=fmod($oo+=ord($fd)+$i+mt_rand(0,2147483392-(ord($fd)+$i)),255);$u.=$fd;}
 $c=strlen($a);
 $s=$c-$c%3;
 $l=self::Unorder($e,md5($b.$u,true));
