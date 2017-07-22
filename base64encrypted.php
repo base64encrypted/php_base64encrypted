@@ -19,7 +19,7 @@ for($i=1;$i<$xx+1;$i++){$fd=$lb{(int)self::Seed(63,chr($oo))};$oo=fmod($oo+=ord(
 $c=strlen($a);
 $s=$c-$c%3;
 $l=self::Unorder($e,md5($b.$u,true));
-$n=hexdec(substr(md5($d.$u),-8))&255;$na=hexdec(substr(md5($n),-8))&63;$nb=hexdec(substr(md5(na),-8))&63;
+$n=hexdec(substr(md5($d.$u),-8))&255;$na=hexdec(substr(md5($n),-8))&63;$nb=hexdec(substr(md5($na),-8))&63;
 for($ri=$si=$r=$i=0;$i<$s;$i+=3,$r++,$si++,$ri++){
 $r=(int)fmod($r+=$n,255);$si=(int)fmod($si+=$nb,63);$ri=(int)fmod($ri+=$na,63);
 $g=(ord($a{$i}^chr($r+=$n))<<16)+(ord($a{$i+1}^chr($r+=$n))<<8)+(ord($a{$i+2}^chr($r+=$n)));
@@ -58,7 +58,7 @@ $u=substr($a,$mm,-($c-$mm));
 $a=substr($a,0,$mm).substr($a,-($c-$mm));
 $e=self::$clef;
 $l=self::Unorder($e,md5($b.$u,true));
-$n=hexdec(substr(md5($d.$u),-8))&255;$na=hexdec(substr(md5($n),-8))&63;$nb=hexdec(substr(md5(na),-8))&63;
+$n=hexdec(substr(md5($d.$u),-8))&255;$na=hexdec(substr(md5($n),-8))&63;$nb=hexdec(substr(md5($na),-8))&63;
 $d=$g="";
 $f=0;
 while($c%4!==0){$a.="=";$c=strlen($a);$c=$c-4;$f++;}
