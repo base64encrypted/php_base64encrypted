@@ -15,13 +15,13 @@ $e=self::$clef;
 $u=$t=$g="";
 $lb=self::Unorder($e,md5(mt_rand(0,2147483647),true));
 $oo=mt_rand(0,255);
-for($i=1;$i<$xx+1;$i++){$fd=$lb{(int)self::Seed(63,chr($oo))};$oo=fmod($oo+=ord($fd)+$i+mt_rand(0,2147483392-(ord($fd)+$i)),255);$u.=$fd;}
+for($i=1;$i<$xx+1;$i++){$fd=$lb{(int)self::Seed(63,chr($oo))};$oo=fmod($oo+=ord($fd)+$i+mt_rand(0,2147483392-(ord($fd)+$i)),256);$u.=$fd;}
 $c=strlen($a);
 $s=$c-$c%3;
 $l=self::Unorder($e,md5($b.$u,true));
 $ju=md5($d.$u);$n=hexdec(substr($ju,-8))&255;$ja=md5($ju);$na=hexdec(substr($ja,-8))&63;$nb=hexdec(substr(md5($ja),-8))&63;
 for($ri=$si=$r=$i=0;$i<$s;$i+=3,$r++,$si++,$ri++){
-$r=(int)fmod($r+=$n,255);$si=(int)fmod($si+=$nb,63);$ri=(int)fmod($ri+=$na,63);
+$r=(int)fmod($r+=$n,256);$si=(int)fmod($si+=$nb,64);$ri=(int)fmod($ri+=$na,64);
 $g=(ord($a{$i}^chr($r+=$n))<<16)+(ord($a{$i+1}^chr($r+=$n))<<8)+(ord($a{$i+2}^chr($r+=$n)));
 $ha=(($g>>18)+($si+=$nb))&63;$hb=(($g>>12)+($si+=$nb))&63;$hc=(($g>>6)+($si+=$nb))&63;$hd=($g+($si+=$nb))&63;
 $t.=$l{$ha};$iq=$l[$ha];$l[$ha]=$l[($ri+=$na)&63];$l[($ri)&63]=$iq;
@@ -63,14 +63,14 @@ $d=$g="";
 $f=0;
 while($c%4!==0){$a.="=";$c=strlen($a);$c=$c-4;$f++;}
 for($ri=$si=$r=$i=0;$i<$c;$i+=4,$r++,$si++,$ri++){
-$ri=(int)fmod($ri+=$na,63);
+$ri=(int)fmod($ri+=$na,65);
 $ha=strpos($l,$a{$i});$iq=$l[$ha];$l[$ha]=$l[($ri+=$na)&63];$l[($ri)&63]=$iq;
 $hb=strpos($l,$a{$i+1});$iq=$l[$hb&63];$l[$hb&63]=$l[($ri+=$na)&63];$l[($ri)&63]=$iq;
 $hc=strpos($l,$a{$i+2});$iq=$l[$hc&63];$l[$hc&63]=$l[($ri+=$na)&63];$l[($ri)&63]=$iq;
 $hd=strpos($l,$a{$i+3});$iq=$l[$hd&63];$l[$hd&63]=$l[($ri+=$na)&63];$l[($ri)&63]=$iq;
-$si=(int)fmod($si+=$nb,63);
+$si=(int)fmod($si+=$nb,64);
 $g=(strpos($e,$e{($ha-($si+=$nb))&63})<<18)+(strpos($e,$e{($hb-($si+=$nb))&63})<<12)+(strpos($e,$e{($hc-($si+=$nb))&63})<<6)+strpos($e,$e{($hd-($si+=$nb))&63});    
-$r=(int)fmod($r+=$n,255);
+$r=(int)fmod($r+=$n,256);
 $d.=(chr($g>>16)^chr($r+=$n)).(chr(($g>>8)&255)^chr($r+=$n)).(chr($g&255)^chr($r+=$n));}
 switch($f){
 case 1:
