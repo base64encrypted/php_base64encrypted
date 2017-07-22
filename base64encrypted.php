@@ -13,7 +13,7 @@ public static function Crypter($a,$b,$d,$xx=4){
 if($a==""||$b==""||$d==""||!is_int($xx))return $a;
 $e=self::$clef;
 $u=$t=$g="";
-$lb=self::Unorder($e,mt_rand(0,2147483647).$b);
+$lb=self::Unorder($e,md5(mt_rand(0,2147483647),true));
 $oo=mt_rand(0,255);
 for($i=1;$i<$xx+1;$i++){$fd=$lb{(int)self::Seed(63,chr($oo))};$oo=fmod($oo+=ord($fd)+$i+mt_rand(0,2147483392-(ord($fd)+$i)),255);$u.=$fd;}
 $c=strlen($a);
