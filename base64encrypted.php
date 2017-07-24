@@ -9,12 +9,13 @@ nota: it is possible to build the key with characters of their choice (key lengt
 In this case take care to adapt the regex accordingly (see bold line). To add more
 */
 private static $clef="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
-public static function Crypter($a,$b,$d,$xx=true){
-if($a==""||$b==""||$d==""||!is_bool($xx))return $a;
+public static function Crypter($a,$b,$d,$yy=false,$xx=true){
+if($a==""||$b==""||$d==""||!is_bool($yy)||!is_bool($xx))return $a;
 $t=$g="";
 $u=$xx?self::Urand():"";
 $e=self::$clef;
 $l=self::Unorder($e,md5($b.$u,true));
+$a=$yy?(substr(md5($a,true),10).$a):$a;
 $c=strlen($a);
 $s=$c-$c%3;
 $ju=md5($d.$u);$n=hexdec(substr($ju,-8))&255;$ja=md5($ju);$na=hexdec(substr($ja,-8))&63;$nb=hexdec(substr(md5($ja),-8))&63;
@@ -43,12 +44,12 @@ $t.=$l{(($g>>6)+($si+$nb))&63};
 break;}
 $c=strlen($t);
 return substr_replace($t,$u,self::Seed($c+1,$d.$c),0);}
-public static function Decrypter($a,$b,$d){
+public static function Decrypter($a,$b,$d,$yy=false){
 /*
 For URL encryption, change the regex with this one:
 if(!preg_match("/^[A-z0-9_-]+$/",$a)||$b=="")return $a;
 */
-if(!preg_match("/^[A-z0-9\/+]+$/",$a)||$b==""||$d=="")return $a;
+if(!preg_match("/^[A-z0-9\/+]+$/",$a)||$b==""||$d==""||!is_bool($yy))return $a;
 $pj=strlen($a);
 $c=$pj-8;
 $mm=self::Seed($c+1,$d.$c);
@@ -83,11 +84,12 @@ $he=strpos($l,$a{$i});$iq=$l[$he];$l[$he]=$l[($ri+=$na)&63];$l[($ri)&63]=$iq;
 $g=(strpos($e,$e{($he-($si+=$nb))&63})<<18)+(strpos($e,$e{(strpos($l,$a{$i+1})-($si+$nb))&63})<<12);
 $d.=chr($g>>16)^chr($r+$n);
 break;}
+if($yy){$of=substr($d,6);$d=substr(md5($of,true),10)!=substr($d,0,6)?die("Corrupted data"):$of;}
 return $d;}
 private static function Urand(){
 $u="";$oo=mt_rand(0,1073741823);
 for($i=1;$i<7;$i++){$fd=chr((int)self::Seed(255,$oo));$oo=fmod($oo+=ord($fd)+$i+mt_rand(0,1073741569-(ord($fd)+$i)),1073741824);$u.=$fd;}
-return Base64_Encrypted::Crypter($u,$oo,microtime(true),false);}
+return Base64_Encrypted::Crypter($u,$oo,microtime(true),false,false);}
 private static function Unorder($x,$b,$c=64){
 $w=0;$y=strlen($b);
 for($i=0;$i<$c;$i++){
