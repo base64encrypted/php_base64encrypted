@@ -89,7 +89,7 @@ $u="";
 $oo=rand(0,1073741823);
 for($i=1;$i<7;$i++){
 $fd=chr((int)self::Seed(255,$oo));$oo=fmod($oo+=ord($fd)+$i+rand(0,1073741569-(ord($fd)+$i)),1073741824);$u.=$fd;}
-return Base64_Encrypted::Crypter($u,$oo,rand(0,2147483647),false);}
+return Base64_Encrypted::Crypter($u,$oo,rand(0,2147483647).microtime(true),false);}
 private static function Unorder($x,$b,$c=64){
 $w=0;$y=strlen($b);
 for($i=0;$i<$c;$i++){
