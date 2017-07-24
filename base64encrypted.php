@@ -10,7 +10,7 @@ In this case take care to adapt the regex accordingly (see bold line). To add mo
 */
 private static $clef="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
 public static function Crypter($a,$b,$d,$xx=true){
-if($a==""||$b==""||$d=="")return $a;
+if($a==""||$b==""||$d==""||!is_bool($xx))return $a;
 $t=$g="";
 $u=$xx?self::Urand():"";
 $e=self::$clef;
