@@ -9,15 +9,15 @@ Base64_Encrypted::Crypter("Hello World ! My nickname is Boby. Have fun.","My Fir
  
 Base64_Encrypted::Decrypter("S/ynxnhrPEe3Gx4UHYP1Sg358llczQDx22hd6BvpdTwenywFUwZAe9vIEmjog7D+T1xN","My First Key","Anti Force Brute Second Key");
  
- To check the integrity of the encrypted data, add true to the fourth parameter (alpha version).
+ To check the integrity of the encrypted data, add true to the fourth parameter and an other key in fifth.
  
 Example:
  
-Base64_Encrypted::Crypter("Hello World ! My nickname is Boby. Have fun.","My First Key","Anti Force Brute Second Key", true);
+Base64_Encrypted::Crypter("Hello World ! My nickname is Boby. Have fun.","My First Key","Anti Force Brute Second Key", true, "Integrity Checker key");
 
 and to decrypt:
 
-Base64_Encrypted::Decrypter("PF+MXPf/zyM9G04COAN/IW3HbOLDJ6XIX5yvCAUZqCf9EcvVA1j7Me1IFYx4XNTRyS40MUk+HPT","My First Key","Anti Force Brute Second Key", true);
+Base64_Encrypted::Decrypter("2aFuKLQHMw9wthTfha9UhA97fzarRe/gEEwI8eKvpMqGbzZVA2PeeslfBIxXOlS0TZucLgddPmM","My First Key","Anti Force Brute Second Key", true, "Integrity Checker key");
 
 
 Ref: http://inseparables.j-ad.net/archives/24/
