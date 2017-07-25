@@ -89,7 +89,7 @@ break;}
 if($yy){
 $pj=strlen($d);
 $c=$pj-6;
-$mm=self::Seed($c+1,$u.$hm);
+$mm=self::Seed($c,$u.$hm);
 $pr=substr($d,-($c-$mm));
 $a=substr($d,0,$mm).(strlen($pr)==$pj?"":$pr);
 $ox=substr(md5($a.$hm.$u,true),self::Seed(10,$hm.$u),6);
