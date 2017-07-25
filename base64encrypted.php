@@ -9,7 +9,7 @@ nota: it is possible to build the key with characters of their choice (key lengt
 In this case take care to adapt the regex accordingly (see bold line).
 */
 private static $clef="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
-public static function Crypter($a,$b,$d,$yy=false,$hm="",$xx=true){
+public static function Crypter($a,$b,$d,$yy=false,$hm="",$mda="",$mdb="",$xx=true){
 if($a==""||$b==""||$d==""||!is_bool($yy)||($yy==true&&$hm=="")||!is_bool($xx))return $a;
 $t=$g="";
 $u=$xx?self::Urand():"";
@@ -20,7 +20,7 @@ $c=$yy?($c+6):$c;
 $e=self::$clef;
 $l=self::Unorder($e,md5($b.$u,true));
 $s=$c-$c%3;
-$ju=md5($d.$u);$n=hexdec(substr($ju,-8))&255;$ja=md5($ju);$na=hexdec(substr($ja,-8))&63;$nb=hexdec(substr(md5($ja),-8))&63;
+$ju=md5($d.$u);$n=hexdec(substr($ju,-8))&255;$ja=md5($mda!=""?$mda.$u:$ju);$na=hexdec(substr($ja,-8))&63;$nb=hexdec(substr(md5($mdb!=""?$mdb.$u:$ja),-8))&63;
 for($ri=$si=$r=$i=0;$i<$s;$i+=3,$r++,$si++,$ri++){
 $r=(int)fmod($r+=$n,256);$si=(int)fmod($si+=$nb,64);$ri=(int)fmod($ri+=$na,64);
 $g=(ord($a{$i}^chr($r+=$n))<<16)+(ord($a{$i+1}^chr($r+=$n))<<8)+(ord($a{$i+2}^chr($r+=$n)));
@@ -46,7 +46,7 @@ $t.=$l{(($g>>6)+($si+$nb))&63};
 break;}
 $c=strlen($t);
 return substr_replace($t,$u,self::Seed($c,$d.$c),0);}
-public static function Decrypter($a,$b,$d,$yy=false,$hm=""){
+public static function Decrypter($a,$b,$d,$yy=false,$hm="",$mda="",$mdb=""){
 /*
 For URL encryption, change the regex with this one:
 if(!preg_match("/^[A-z0-9_-]+$/",$a)||$b=="")return $a;
@@ -60,7 +60,7 @@ $pr=substr($a,-($c-$mm));
 $a=substr($a,0,$mm).(strlen($pr)==$pj?"":$pr);
 $e=self::$clef;
 $l=self::Unorder($e,md5($b.$u,true));
-$ju=md5($d.$u);$n=hexdec(substr($ju,-8))&255;$ja=md5($ju);$na=hexdec(substr($ja,-8))&63;$nb=hexdec(substr(md5($ja),-8))&63;
+$ju=md5($d.$u);$n=hexdec(substr($ju,-8))&255;$ja=md5($mda!=""?$mda.$u:$ju);$na=hexdec(substr($ja,-8))&63;$nb=hexdec(substr(md5($mdb!=""?$mdb.$u:$ja),-8))&63;
 $d=$g="";
 $f=0;
 while($c%4!==0){$a.="=";$c=strlen($a);$c=$c-4;$f++;}
@@ -98,7 +98,7 @@ return $d;}
 private static function Urand(){
 $u="";$oo=mt_rand(0,1073741823);
 for($i=1;$i<7;$i++){$fd=chr((int)self::Seed(255,$oo));$oo=fmod($oo+=ord($fd)+$i+mt_rand(0,1073741569-(ord($fd)+$i)),1073741824);$u.=$fd;}
-return Base64_Encrypted::Crypter($u,$oo,microtime(true),false,"",false);}
+return Base64_Encrypted::Crypter($u,$oo,microtime(true),false,"","","",false);}
 private static function Unorder($x,$b,$c=64){
 $w=0;$y=strlen($b);
 for($i=0;$i<$c;$i++){
@@ -106,7 +106,7 @@ $w=($w+ord($x[$i])+ord($b[$i%$y]))%$c;
 $j=$x[$i];$x[$i]=$x[$w];$x[$w]=$j;}
 return $x;}
 private static function Seed($b,$c){
-return round(((hexdec(substr(md5($c),-8))&2147483647)/2147483647.0)*$b);}
+return round(((hexdec(substr(md5($c),-8))&2147483647)/2147483647.0)*$b);} 
 }
 
 ?>
