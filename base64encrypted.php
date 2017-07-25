@@ -93,7 +93,7 @@ $mm=self::Seed($c,$u.$hm);
 $pr=substr($d,-($c-$mm));
 $a=substr($d,0,$mm).(strlen($pr)==$pj?"":$pr);
 $ox=substr(md5($a.$hm.$u,true),self::Seed(10,$hm.$u),6);
-$d=$ox!=substr($d,$mm,6)?die("Corrupted data"):$a;}
+$d=$ox!=substr($d,$mm,6)?die("Corrupted data !"):$a;}
 return $d;}
 private static function Urand(){
 $u="";$oo=mt_rand(0,1073741823);
