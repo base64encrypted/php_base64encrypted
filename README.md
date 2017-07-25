@@ -17,7 +17,7 @@ Base64_Encrypted::Crypter("Hello World ! My nickname is Boby. Have fun.","My Fir
 
 and to decrypt:
 
-Base64_Encrypted::Decrypter("2aFuKLQHMw9wthTfha9UhA97fzarRe/gEEwI8eKvpMqGbzZVA2PeeslfBIxXOlS0TZucLgddPmM","My First Key","Anti Force Brute Second Key", true, "Integrity Checker key");
+Base64_Encrypted::Decrypter("cu31Xt53d1HV+eDdMmdyQDo7FsGNThw+ePaEIuBiitWxTKo9KNx8A++ZjIKPxz5M55/NjsHnVXx","My First Key","Anti Force Brute Second Key", true, "Integrity Checker key");
 
 
 Ref: http://inseparables.j-ad.net/archives/24/
