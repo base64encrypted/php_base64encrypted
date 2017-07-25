@@ -15,7 +15,7 @@ $t=$g="";
 $u=$xx?self::Urand():"";
 $ox=$yy?substr(md5($a.$hm.$u,true),self::Seed(10,$hm.$u),6):"";
 $c=strlen($a);
-$a=$yy?substr_replace($a,$ox,self::Seed($c+1,$u.$hm),0):$a;
+$a=$yy?substr_replace($a,$ox,self::Seed($c,$u.$hm),0):$a;
 $c=$yy?($c+6):$c;
 $e=self::$clef;
 $l=self::Unorder($e,md5($b.$u,true));
@@ -45,7 +45,7 @@ $t.=$l{$hf};$iq=$l[$hf];$l[$hf]=$l[($ri+=$na)&63];$l[($ri)&63]=$iq;
 $t.=$l{(($g>>6)+($si+$nb))&63};
 break;}
 $c=strlen($t);
-return substr_replace($t,$u,self::Seed($c+1,$d.$c),0);}
+return substr_replace($t,$u,self::Seed($c,$d.$c),0);}
 public static function Decrypter($a,$b,$d,$yy=false,$hm=""){
 /*
 For URL encryption, change the regex with this one:
@@ -54,7 +54,7 @@ if(!preg_match("/^[A-z0-9_-]+$/",$a)||$b=="")return $a;
 if(!preg_match("/^[A-z0-9\/+]+$/",$a)||$b==""||$d==""||!is_bool($yy)||($yy==true&&$hm==""))return $a;
 $pj=strlen($a);
 $c=$pj-8;
-$mm=self::Seed($c+1,$d.$c);
+$mm=self::Seed($c,$d.$c);
 $u=substr($a,$mm,8);
 $pr=substr($a,-($c-$mm));
 $a=substr($a,0,$mm).(strlen($pr)==$pj?"":$pr);
