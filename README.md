@@ -20,7 +20,7 @@ and to decrypt:
 Base64_Encrypted::Decrypter( "cTFsUwJCsb/2mFvIzDOh7/pnZOnkU8OnfgZ6EMQ3j2+1dDyQ/9JutgxSSK9Zh8XCbfh2KD0yKng"," My First Key", "Anti Force Brute Second Key", true);
 
 
-The "Paranoiac" mode allows to add two other passwords to annihilate any attempt of cracking by brute force and without affecting performances:
+The "Paranoiac" mode allows to add two other passwords to annihilate any attempt of attack by brute force and without affecting performances:
 
 Example:
 
