@@ -9,13 +9,13 @@ nota: it is possible to build the key with characters of their choice (key lengt
 In this case take care to adapt the regex accordingly (see bold line).
 */
 private static $clef="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
-public static function Crypter($a,$b,$d,$yy=false,$hm="",$mda="",$mdb="",$xx=true){
-if($a==""||$b==""||$d==""||!is_bool($yy)||($yy==true&&$hm=="")||!is_bool($xx))return $a;
+public static function Crypter($a,$b,$d,$yy=false,$mda="",$mdb="",$xx=true){
+if($a==""||$b==""||$d==""||!is_bool($yy)||!is_bool($xx))return $a;
 $t=$g="";
 $u=$xx?self::Urand():"";
-$ox=$yy?substr(md5($a.$hm.$u,true),self::Seed(10,$hm.$u),6):"";
+$ox=$yy?substr(md5($a.$u,true),self::Seed(10,$u),6):"";
 $c=strlen($a);
-$a=$yy?substr_replace($a,$ox,self::Seed($c,$u.$hm),0):$a;
+$a=$yy?substr_replace($a,$ox,self::Seed($c,$u),0):$a;
 $c=$yy?($c+6):$c;
 $e=self::$clef;
 $l=self::Unorder($e,md5($b.$u,true));
@@ -45,16 +45,16 @@ $t.=$l{$hf};$iq=$l[$hf];$l[$hf]=$l[($ri+=$na)&63];$l[($ri)&63]=$iq;
 $t.=$l{(($g>>6)+($si+$nb))&63};
 break;}
 $c=strlen($t);
-return substr_replace($t,$u,self::Seed($c,self::Quedalle($b,$d,$yy,$hm,$mda,$mdb,$c)),0);}
-public static function Decrypter($a,$b,$d,$yy=false,$hm="",$mda="",$mdb=""){
+return substr_replace($t,$u,self::Seed($c,self::Quedalle($b,$d,$mda,$mdb,$c)),0);}
+public static function Decrypter($a,$b,$d,$yy=false,$mda="",$mdb=""){
 /*
 For URL encryption, change the regex with this one:
 if(!preg_match("/^[A-z0-9_-]+$/",$a)||$b=="")return $a;
 */
-if(!preg_match("/^[A-z0-9\/+]+$/",$a)||$b==""||$d==""||!is_bool($yy)||($yy==true&&$hm==""))return $a;
+if(!preg_match("/^[A-z0-9\/+]+$/",$a)||$b==""||$d==""||!is_bool($yy))return $a;
 $pj=strlen($a);
 $c=$pj-8;
-$mm=self::Seed($c,self::Quedalle($b,$d,$yy,$hm,$mda,$mdb,$c));
+$mm=self::Seed($c,self::Quedalle($b,$d,$mda,$mdb,$c));
 $u=substr($a,$mm,8);
 $pr=substr($a,-($c-$mm));
 $a=substr($a,0,$mm).(strlen($pr)==$pj?"":$pr);
@@ -89,22 +89,21 @@ break;}
 if($yy){
 $pj=strlen($d);
 $c=$pj-6;
-$mm=self::Seed($c,$u.$hm);
+$mm=self::Seed($c,$u);
 $pr=substr($d,-($c-$mm));
 $a=substr($d,0,$mm).(strlen($pr)==$pj?"":$pr);
-$ox=substr(md5($a.$hm.$u,true),self::Seed(10,$hm.$u),6);
+$ox=substr(md5($a.$u,true),self::Seed(10,$u),6);
 $d=$ox!=substr($d,$mm,6)?die("Corrupted data !"):$a;}
 return $d;}
-private static function Quedalle($b,$d,$yy,$hm,$mda,$mdb,$c){
-$gk=4;$dq=array(0=>$b,1=>$d);
-$yy?array_push($dq,$hm):$gk--;
+private static function Quedalle($b,$d,$mda,$mdb,$c){
+$gk=3;$dq=array(0=>$b,1=>$d);
 $mda!=""?array_push($dq,$mda):$gk--;
 $mdb!=""?array_push($dq,$mdb):$gk--;
-return $dq[self::Seed($gk,($yy?$hm:($mda!=""?$mda:($mdb!=""?$mdb:$d))).$c)];}
+return $dq[self::Seed($gk,$mda!=""?$mda:($mdb!=""?$mdb:$d).$c)];}
 private static function Urand(){
 $u="";$oo=mt_rand(0,1073741823);
 for($i=1;$i<7;$i++){$fd=chr((int)self::Seed(255,$oo));$oo=fmod($oo+=ord($fd)+$i+mt_rand(0,1073741569-(ord($fd)+$i)),1073741824);$u.=$fd;}
-return Base64_Encrypted::Crypter($u,$oo,microtime(true),false,"","","",false);}
+return Base64_Encrypted::Crypter($u,$oo,microtime(true),false,"","",false);}
 private static function Unorder($x,$b,$c=64){
 $w=0;$y=strlen($b);
 for($i=0;$i<$c;$i++){
