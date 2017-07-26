@@ -7,28 +7,28 @@ Base64_Encrypted::Crypter("Hello World ! My nickname is Boby. Have fun.","My Fir
  
  and to decrypt:
  
-Base64_Encrypted::Decrypter("t5Fb4KSisLIJ9U7tJ5IMlKg//LaLKGFYG5poifc7w38dp+bsBfnwJXiXCjnOFVXVh0v","My First Key","Anti Force Brute Second Key");
+Base64_Encrypted::Decrypter( "Yo0WTrqxueLXruhIlRtZBpAWupu6wK4FxRkVfXiCYKyygl7YHxc2cgX/zwWuV7Br+lH", "My First Key", "Anti Force Brute Second Key");
  
- To check the integrity of the encrypted data, add true to the fourth parameter and an other key in fifth.
+ To check the integrity of the encrypted data, add true to the fourth parameter.
  
 Example:
  
-Base64_Encrypted::Crypter("Hello World ! My nickname is Boby. Have fun.","My First Key","Anti Force Brute Second Key", true, "Integrity Checker key");
+Base64_Encrypted::Crypter("Hello World ! My nickname is Boby. Have fun.","My First Key","Anti Force Brute Second Key", true);
 
 and to decrypt:
 
-Base64_Encrypted::Decrypter("fp3kPXOk0PYgq60xS+tNdNYUDI9Sl2dFU2zUKK3Zp7x7TWpaslxP3hk2RQzWpRpt19OVQFUHGcN","My First Key","Anti Force Brute Second Key", true, "Integrity Checker key");
+Base64_Encrypted::Decrypter( "cTFsUwJCsb/2mFvIzDOh7/pnZOnkU8OnfgZ6EMQ3j2+1dDyQ/9JutgxSSK9Zh8XCbfh2KD0yKng"," My First Key", "Anti Force Brute Second Key", true);
 
 
 The "Paranoiac" mode allows to add two other passwords to annihilate any attempt of cracking by brute force and without affecting performances:
 
 Example:
 
-Base64_Encrypted::Crypter("Hello World ! My nickname is Boby. Have fun.", "My First Key","Anti Force Brute Second Key", true, "Integrity Checker key", "Paranoiac Key 1", "Paranoiac Key 2");
+Base64_Encrypted::Crypter("Hello World ! My nickname is Boby. Have fun.", "My First Key","Anti Force Brute Second Key", true, "Paranoiac Key 1", "Paranoiac Key 2");
 
 and to decrypt:
 
-Base64_Encrypted::Decrypter("EPxYpRs9fmJe5IV4KTRR9UrSwRqnHEA9BeRL2XasGLdqfDOr36vwaJBI1GjNGMlOUyll7O2oYks", "My First Key","Anti Force Brute Second Key", true, "Integrity Checker key", "Paranoiac Key 1", "Paranoiac Key 2");
+Base64_Encrypted::Decrypter( "xftaEydM71nQUHlmqb6UX2Wl0ejKuSzf7FCoV2hIIdopHXa231jYoyujmpPXtG2tpv7quJiBAdJ", "My First Key","Anti Force Brute Second Key", true, "Paranoiac Key 1", "Paranoiac Key 2");
 
 
 
