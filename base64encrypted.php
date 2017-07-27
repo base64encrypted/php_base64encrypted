@@ -12,7 +12,7 @@ public static function Crypter($a,$b,$d,$yy=false,$mda="",$mdb="",$xx=true){
 if($a==""||$b==""||$d==""||!is_bool($yy)||!is_bool($xx))return $a;
 $t=$g="";
 $u=$xx?self::Urand():"";
-$er=self::Switchkey($b,$d,$mda,$mdb,$u);
+$er=$yy?self::Switchkey($b,$d,$mda,$mdb,$u):"";
 $ox=$yy?substr(md5($a.$u,true),self::Seed(10,$er.$u),6):"";
 $c=strlen($a);
 $a=$yy?substr_replace($a,$ox,self::Seed($c,$u.$er),0):$a;
@@ -61,7 +61,7 @@ $a=substr($a,0,$mm).(strlen($pr)==$pj?"":$pr);
 $e=self::$clef;
 $l=self::Unorder($e,md5($b.$u,true));
 $ju=md5($d.$u);$n=hexdec(substr($ju,-8))&255;$ja=md5($mda!=""?$mda.$u:$ju);$na=hexdec(substr($ja,-8))&63;$nb=hexdec(substr(md5($mdb!=""?$mdb.$u:$ja),-8))&63;
-$d=$g="";
+$da=$g="";
 $f=0;
 while($c%4!==0){$a.="=";$c=strlen($a);$c=$c-4;$f++;}
 for($ri=$si=$r=$i=0;$i<$c;$i+=4,$r++,$si++,$ri++){
@@ -73,34 +73,34 @@ $hd=strpos($l,$a{$i+3});$iq=$l[$hd&63];$l[$hd&63]=$l[($ri+=$na)&63];$l[($ri)&63]
 $si=(int)fmod($si+=$nb,64);
 $g=(strpos($e,$e{($ha-($si+=$nb))&63})<<18)+(strpos($e,$e{($hb-($si+=$nb))&63})<<12)+(strpos($e,$e{($hc-($si+=$nb))&63})<<6)+strpos($e,$e{($hd-($si+=$nb))&63});
 $r=(int)fmod($r+=$n,256);
-$d.=(chr($g>>16)^chr($r+=$n)).(chr(($g>>8)&255)^chr($r+=$n)).(chr($g&255)^chr($r+=$n));}
+$da.=(chr($g>>16)^chr($r+=$n)).(chr(($g>>8)&255)^chr($r+=$n)).(chr($g&255)^chr($r+=$n));}
 switch($f){
 case 1:
 $he=strpos($l,$a{$i});$iq=$l[$he];$l[$he]=$l[($ri+=$na)&63];$l[($ri)&63]=$iq;
 $hf=strpos($l,$a{$i+1});$iq=$l[$hf&63];$l[$hf&63]=$l[($ri+=$na)&63];$l[($ri)&63]=$iq;
 $g=(strpos($e,$e{($he-($si+=$nb))&63})<<18)+(strpos($e,$e{($hf-($si+=$nb))&63})<<12)+(strpos($e,$e{(strpos($l,$a{$i+2})-($si+$nb))&63})<<6);
-$d.=(chr($g>>16)^chr($r+=$n)).(chr(($g>>8)&255)^chr($r+$n));
+$da.=(chr($g>>16)^chr($r+=$n)).(chr(($g>>8)&255)^chr($r+$n));
 break;
 case 2:
 $he=strpos($l,$a{$i});$iq=$l[$he];$l[$he]=$l[($ri+=$na)&63];$l[($ri)&63]=$iq;
 $g=(strpos($e,$e{($he-($si+=$nb))&63})<<18)+(strpos($e,$e{(strpos($l,$a{$i+1})-($si+$nb))&63})<<12);
-$d.=chr($g>>16)^chr($r+$n);
+$da.=chr($g>>16)^chr($r+$n);
 break;}
 if($yy){
-$pj=strlen($d);
+$pj=strlen($da);
 $c=$pj-6;
 $er=self::Switchkey($b,$d,$mda,$mdb,$u);
 $mm=self::Seed($c,$u.$er);
-$pr=substr($d,-($c-$mm));
-$a=substr($d,0,$mm).(strlen($pr)==$pj?"":$pr);
+$pr=substr($da,-($c-$mm));
+$a=substr($da,0,$mm).(strlen($pr)==$pj?"":$pr);
 $ox=substr(md5($a.$u,true),self::Seed(10,$er.$u),6);
-$d=$ox!=substr($d,$mm,6)?die("Corrupted data !"):$a;}
-return $d;}
+$da=$ox!=substr($da,$mm,6)?die("Corrupted data !"):$a;}
+return $da;}
 private static function Switchkey($b,$d,$mda,$mdb,$c){
 $gk=3;$dq=array(0=>$b,1=>$d);
 $mda!=""?array_push($dq,$mda):$gk--;
 $mdb!=""?array_push($dq,$mdb):$gk--;
-return $dq[self::Seed($gk,$mda!=""?$mda:($mdb!=""?$mdb:$d).$c)];}
+return $dq[self::Seed($gk,($mda!=""?$mda:($mdb!=""?$mdb:$d)).$c)];}
 private static function Urand(){
 $u="";$oo=mt_rand(0,1073741823);
 for($i=1;$i<7;$i++){$fd=chr((int)self::Seed(255,$oo));$oo=fmod($oo+=ord($fd)+$i+mt_rand(0,1073741569-(ord($fd)+$i)),1073741824);$u.=$fd;}
