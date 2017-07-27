@@ -100,7 +100,7 @@ private static function Switchkey($b,$d,$mda,$mdb,$c){
 $gk=3;$dq=array(0=>$b,1=>$d);
 $mda!=""?array_push($dq,$mda):$gk--;
 $mdb!=""?array_push($dq,$mdb):$gk--;
-return $dq[self::Seed($gk,$c)];}
+return $dq[self::Seed($gk,($mda!=""?$mda:($mdb!=""?$mdb:$d)).$c)];}
 private static function Urand(){
 $u="";$oo=mt_rand(0,1073741823);
 for($i=1;$i<7;$i++){$fd=chr((int)self::Seed(255,$oo));$oo=fmod($oo+=ord($fd)+$i+mt_rand(0,1073741569-(ord($fd)+$i)),1073741824);$u.=$fd;}
