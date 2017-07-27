@@ -7,7 +7,7 @@ Base64_Encrypted::Crypter("Hello World ! My nickname is Boby. Have fun.","My Fir
  
  and to decrypt:
  
-Base64_Encrypted::Decrypter( "9cDbj0aAebKhD9RwukMvtjVdCjD+RaCVWdNn5yLXShZtviAD0Jm3HAwq4bETAxmxm8h", "My First Key", "Anti Force Brute Second Key");
+Base64_Encrypted::Decrypter( "NfyDHgEeIiZoStMNz/sqJFi58/QY8vqkODqa5RePdHvf47KZGNo+wkKYmYeicic5GnX", "My First Key", "Anti Force Brute Second Key");
  
  To check the integrity of the encrypted data, add true to the fourth parameter.
  
