@@ -93,8 +93,7 @@ $er=self::Switchkey($b,$d,$mda,$mdb,$u);
 $mm=self::Seed($c,$u.$er);
 $pr=substr($da,-($c-$mm));
 $a=substr($da,0,$mm).(strlen($pr)==$pj?"":$pr);
-$ox=substr(md5($a.$u,true),self::Seed(10,$er.$u),6);
-$da=$ox!=substr($da,$mm,6)?die("Corrupted data !"):$a;}
+$da=substr(md5($a.$u,true),self::Seed(10,$er.$u),6)!=substr($da,$mm,6)?die("Corrupted data !"):$a;}
 return $da;}
 private static function Switchkey($b,$d,$mda,$mdb,$c){
 $gk=3;$dq=array(0=>$b,1=>$d);
