@@ -11,12 +11,13 @@ private static $clef="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz012345
 public static function Crypter($a,$b,$d,$yy=false,$mda="",$mdb="",$xx=true){
 if($a==""||$b==""||$d==""||!is_bool($yy)||!is_bool($xx))return $a;
 $t=$g="";
-$u=$xx?self::Urand():"";
-$er=$yy?self::Switchkey($b,$d,$mda,$mdb,$u):"";
-$ox=$yy?substr(md5($a.$u,true),self::Seed(10,$er.$u),6):"";
+$u=$xx?self::Urand():"";  
 $c=strlen($a);
-$a=$yy?substr_replace($a,$ox,self::Seed($c,$u.$er),0):$a;
-$c=$yy?($c+6):$c;
+if($yy){
+$er=self::Switchkey($b,$d,$mda,$mdb,$u);
+$ox=substr(md5($a.$u,true),self::Seed(10,$er.$u),6);
+$a=substr_replace($a,$ox,self::Seed($c,$u.$er),0);
+$c=$c+6;}  
 $e=self::$clef;
 $l=self::Unorder($e,md5($b.$u,true));
 $s=$c-$c%3;
