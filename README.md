@@ -25,12 +25,13 @@ The "Paranoiac" mode allows to add two other passwords to annihilate any attempt
 
 Example:
 
-Base64_Encrypted::Decrypter( "SJTdBH+464q3sSa8cAkVtLVgOAajJRvmcuDe7OheDWdDEUUtiBmjb6gNgHXm4Al/YPodDKTpwzV", "My First Key","Anti Force Brute Second Key", true, "Paranoiac Key 1", "Paranoiac Key 2");
+Base64_Encrypted::Crypter( "Hello World ! My nickname is Boby. Have fun.", "My First Key","Anti Force Brute Second Key", true, "Paranoiac Key 1", "Paranoiac Key 2");
+
 
 and to decrypt:
 
 
-Base64_Encrypted::Decrypter( "RaAzJ8trdT1NNaLyqdm97kBylBcCO5yM/pGDLjNf9c5yvBYpmu9naI7S/40w5Z4+4LCnhmXmLqe", "My First Key","Anti Force Brute Second Key", true, "Paranoiac Key 1", "Paranoiac Key 2");
+Base64_Encrypted::Decrypter( "SJTdBH+464q3sSa8cAkVtLVgOAajJRvmcuDe7OheDWdDEUUtiBmjb6gNgHXm4Al/YPodDKTpwzV", "My First Key","Anti Force Brute Second Key", true, "Paranoiac Key 1", "Paranoiac Key 2");
 
 
 
