@@ -1,5 +1,5 @@
 # php_base64encrypted
-Encrypt base64 via PHP. Short, fast, easy, practice and safe (this encryption is impossible to break).
+Encrypt base64 via PHP. Short, fast, easy, practice and safe (-quantom aside ^^- this encryption is impossible to break).
 
 Example: 
 
@@ -7,7 +7,7 @@ Base64_Encrypted::Crypter("Hello World ! My nickname is Boby. Have fun.","My Fir
  
  and to decrypt:
  
-Base64_Encrypted::Decrypter( "Yo0WTrqxueLXruhIlRtZBpAWupu6wK4FxRkVfXiCYKyygl7YHxc2cgX/zwWuV7Br+lH", "My First Key", "Anti Force Brute Second Key");
+Base64_Encrypted::Decrypter( "3cnSksSSCnnXyigpiBZskp4LpncKdHJm2CKqjBzPOFJRVIm7tS7u4qosF7qRh9TZFkG", "My First Key", "Anti Force Brute Second Key");
  
  To check the integrity of the encrypted data, add true to the fourth parameter.
  
@@ -17,7 +17,7 @@ Base64_Encrypted::Crypter("Hello World ! My nickname is Boby. Have fun.","My Fir
 
 and to decrypt:
 
-Base64_Encrypted::Decrypter( "cTFsUwJCsb/2mFvIzDOh7/pnZOnkU8OnfgZ6EMQ3j2+1dDyQ/9JutgxSSK9Zh8XCbfh2KD0yKng"," My First Key", "Anti Force Brute Second Key", true);
+Base64_Encrypted::Decrypter( "JXXgwKsOeYPJh1BaTESoc8/GeorOhWxtr+fC6QA+rbHBw9Qv+mlb0lLObgVQkQgIgRu8sEfEEgh"," My First Key", "Anti Force Brute Second Key", true);
 
 
 The "Paranoiac" mode allows to add two other passwords to annihilate any attempt of attack by brute force and without affecting performances:
@@ -28,7 +28,7 @@ Base64_Encrypted::Crypter("Hello World ! My nickname is Boby. Have fun.", "My Fi
 
 and to decrypt:
 
-Base64_Encrypted::Decrypter( "xftaEydM71nQUHlmqb6UX2Wl0ejKuSzf7FCoV2hIIdopHXa231jYoyujmpPXtG2tpv7quJiBAdJ", "My First Key","Anti Force Brute Second Key", true, "Paranoiac Key 1", "Paranoiac Key 2");
+Base64_Encrypted::Decrypter( "WaC64F8HIQ3CQqmjAzTkfvgSwMcXOsaECiF5oxcWA4Gomq6QYnR/NwSPIgRj0Ow1vGeNrkWwvnG", "My First Key","Anti Force Brute Second Key", true, "Paranoiac Key 1", "Paranoiac Key 2");
 
 
 
