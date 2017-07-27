@@ -1,5 +1,4 @@
 <?php
-
 class Base64_Encrypted{
 /*
 For URL encryption, change the key with this one:
@@ -13,9 +12,10 @@ public static function Crypter($a,$b,$d,$yy=false,$mda="",$mdb="",$xx=true){
 if($a==""||$b==""||$d==""||!is_bool($yy)||!is_bool($xx))return $a;
 $t=$g="";
 $u=$xx?self::Urand():"";
-$ox=$yy?substr(md5($a.$u,true),self::Seed(10,$u),6):"";
+$er=self::Switchkey($b,$d,$mda,$mdb,$u);
+$ox=$yy?substr(md5($a.$u,true),self::Seed(10,$er.$u),6):"";
 $c=strlen($a);
-$a=$yy?substr_replace($a,$ox,self::Seed($c,$u),0):$a;
+$a=$yy?substr_replace($a,$ox,self::Seed($c,$u.$er),0):$a;
 $c=$yy?($c+6):$c;
 $e=self::$clef;
 $l=self::Unorder($e,md5($b.$u,true));
@@ -45,7 +45,7 @@ $t.=$l{$hf};$iq=$l[$hf];$l[$hf]=$l[($ri+=$na)&63];$l[($ri)&63]=$iq;
 $t.=$l{(($g>>6)+($si+$nb))&63};
 break;}
 $c=strlen($t);
-return substr_replace($t,$u,self::Seed($c,self::Quedalle($b,$d,$mda,$mdb,$c)),0);}
+return substr_replace($t,$u,self::Seed($c,self::Switchkey($b,$d,$mda,$mdb,$c)),0);}
 public static function Decrypter($a,$b,$d,$yy=false,$mda="",$mdb=""){
 /*
 For URL encryption, change the regex with this one:
@@ -54,7 +54,7 @@ if(!preg_match("/^[A-z0-9_-]+$/",$a)||$b=="")return $a;
 if(!preg_match("/^[A-z0-9\/+]+$/",$a)||$b==""||$d==""||!is_bool($yy))return $a;
 $pj=strlen($a);
 $c=$pj-8;
-$mm=self::Seed($c,self::Quedalle($b,$d,$mda,$mdb,$c));
+$mm=self::Seed($c,self::Switchkey($b,$d,$mda,$mdb,$c));
 $u=substr($a,$mm,8);
 $pr=substr($a,-($c-$mm));
 $a=substr($a,0,$mm).(strlen($pr)==$pj?"":$pr);
@@ -89,13 +89,14 @@ break;}
 if($yy){
 $pj=strlen($d);
 $c=$pj-6;
-$mm=self::Seed($c,$u);
+$er=self::Switchkey($b,$d,$mda,$mdb,$u);
+$mm=self::Seed($c,$u.$er);
 $pr=substr($d,-($c-$mm));
 $a=substr($d,0,$mm).(strlen($pr)==$pj?"":$pr);
-$ox=substr(md5($a.$u,true),self::Seed(10,$u),6);
+$ox=substr(md5($a.$u,true),self::Seed(10,$er.$u),6);
 $d=$ox!=substr($d,$mm,6)?die("Corrupted data !"):$a;}
 return $d;}
-private static function Quedalle($b,$d,$mda,$mdb,$c){
+private static function Switchkey($b,$d,$mda,$mdb,$c){
 $gk=3;$dq=array(0=>$b,1=>$d);
 $mda!=""?array_push($dq,$mda):$gk--;
 $mdb!=""?array_push($dq,$mdb):$gk--;
@@ -113,5 +114,4 @@ return $x;}
 private static function Seed($b,$c){
 return round(((hexdec(substr(md5($c),-8))&2147483647)/2147483647.0)*$b);} 
 }
-
 ?>
