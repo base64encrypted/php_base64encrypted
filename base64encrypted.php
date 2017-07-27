@@ -45,7 +45,7 @@ $t.=$l{$hf};$iq=$l[$hf];$l[$hf]=$l[($ri+=$na)&63];$l[($ri)&63]=$iq;
 $t.=$l{(($g>>6)+($si+$nb))&63};
 break;}
 $c=strlen($t);
-return substr_replace($t,$u,self::Seed($c,self::Switchkey($b,$d,$mda,$mdb,$c)),0);}
+return substr_replace($t,$u,self::Seed($c,self::Switchkey($b,$d,$mda,$mdb,$c).$c),0);}
 public static function Decrypter($a,$b,$d,$yy=false,$mda="",$mdb=""){
 /*
 For URL encryption, change the regex with this one:
@@ -54,7 +54,7 @@ if(!preg_match("/^[A-z0-9_-]+$/",$a)||$b=="")return $a;
 if(!preg_match("/^[A-z0-9\/+]+$/",$a)||$b==""||$d==""||!is_bool($yy))return $a;
 $pj=strlen($a);
 $c=$pj-8;
-$mm=self::Seed($c,self::Switchkey($b,$d,$mda,$mdb,$c));
+$mm=self::Seed($c,self::Switchkey($b,$d,$mda,$mdb,$c).$c);
 $u=substr($a,$mm,8);
 $pr=substr($a,-($c-$mm));
 $a=substr($a,0,$mm).(strlen($pr)==$pj?"":$pr);
