@@ -15,8 +15,7 @@ $u=$xx?self::Urand():"";
 $c=strlen($a);
 if($yy){
 $er=self::Switchkey($b,$d,$mda,$mdb,$u);
-$ox=substr(md5($a.$u,true),self::Seed(10,$er.$u),6);
-$a=substr_replace($a,$ox,self::Seed($c,$u.$er),0);
+$a=substr_replace($a,substr(md5($a.$u,true),self::Seed(10,$er.$u),6),self::Seed($c,$u.$er),0);
 $c=$c+6;}  
 $e=self::$clef;
 $l=self::Unorder($e,md5($b.$u,true));
