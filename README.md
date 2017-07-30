@@ -31,7 +31,7 @@ Base64_Encrypted::Decrypter( "Hello World ! My nickname is Boby. Have fun.", "My
 and to decrypt:
 
 
-Base64_Encrypted::Decrypter( "XkDcz64cU8KzYzASATaWqfWTCvpDerqmSKmjIBsDgZfznCXqHqdWgigqaR8tUmjYQmUBWyoxkjq", "My First Key","Anti Force Brute Second Key", true, "Paranoiac Key 1", "Paranoiac Key 2");
+Base64_Encrypted::Decrypter( "nT67sTHj0p56dA0O/GRN2EHYs921G7DCW7PjHDoINTuwnoLq/SxJTv/8vlaPZNtWhTLL3eH6uMt", "My First Key","Anti Force Brute Second Key", true, "Paranoiac Key 1", "Paranoiac Key 2");
 
 
 
