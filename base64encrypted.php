@@ -11,39 +11,40 @@ private static $clef="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz012345
 public static function Crypter($a,$b,$d,$yy=false,$mda="",$mdb="",$xx=true){
 if($a==""||$b==""||$d==""||!is_bool($yy)||!is_bool($xx))return $a;
 $t=$g="";
-$u=$xx?self::Urand():"";  
+$u=$xx?self::Urand():"";
 $c=strlen($a);
 if($yy){
 $er=self::Switchkey($b,$d,$mda,$mdb,$u);
 $a=substr_replace($a,substr(md5($a.$u,true),self::Seed(10,$er.$u),6),self::Seed($c,$u.$er),0);
-$c=$c+6;}  
+$c+=6;}
 $e=self::$clef;
-$l=self::Unorder($e,md5($b.$u,true));
+$id=md5($b.$u,true);
+$l=self::Unorder($e,$id);
+$li=self::Unorder(range(0,255),$id,256);
 $s=$c-$c%3;
-$ju=md5($d.$u);$n=hexdec(substr($ju,-8))&255;$ja=md5($mda!=""?$mda.$u:$ju);$na=hexdec(substr($ja,-8))&63;$nb=hexdec(substr(md5($mdb!=""?$mdb.$u:$ja),-8))&63;
-$n=$n==0?1:$n;$na=$na==0?1:$na;$nb=$nb==0?1:$nb;
-for($ri=$si=$r=$i=0;$i<$s;$i+=3,$r++,$si++,$ri++){
-$r=(int)fmod($r+=$n,256);$si=(int)fmod($si+=$nb,64);$ri=(int)fmod($ri+=$na,64);
-$g=(ord($a{$i}^chr($r+=$n))<<16)+(ord($a{$i+1}^chr($r+=$n))<<8)+(ord($a{$i+2}^chr($r+=$n)));
-$ha=(($g>>18)+($si+=$nb))&63;$hb=(($g>>12)+($si+=$nb))&63;$hc=(($g>>6)+($si+=$nb))&63;$hd=($g+($si+=$nb))&63;
-$t.=$l{$ha};$iq=$l[$ha];$l[$ha]=$l[($ri+=$na)&63];$l[($ri)&63]=$iq;
-$t.=$l{$hb};$iq=$l[$hb];$l[$hb]=$l[($ri+=$na)&63];$l[($ri)&63]=$iq;
-$t.=$l{$hc};$iq=$l[$hc];$l[$hc]=$l[($ri+=$na)&63];$l[($ri)&63]=$iq;
-$t.=$l{$hd};$iq=$l[$hd];$l[$hd]=$l[($ri+=$na)&63];$l[($ri)&63]=$iq;}
+$ju=md5($d.$u);$n=hexdec(substr($ju,-8))&255;$ja=md5($mda!=""?$mda.$u:$ju);$na=hexdec(substr($ja,-8))&63;$nb=hexdec(substr(md5($mdb!=""?$mdb.$u:$ja),-8))&255;
+for($n=$n,$na=$na,$nb=$nb,$i=0;$i<$s;$i+=3,$n++,$na++,$nb++){
+$n=(int)fmod($n,256);$nb=(int)fmod($nb,256);$na=(int)fmod($na,64);
+$g=(ord($a{$i}^chr($li{$n++&255}))<<16)+(ord($a{$i+1}^chr($li{$n++&255}))<<8)+(ord($a{$i+2}^chr($li{$n++&255})));
+$ha=(($g>>18)+($li{$nb++&255}))&63;$hb=(($g>>12)+($li{$nb++&255}))&63;$hc=(($g>>6)+($li{$nb++&255}))&63;$hd=($g+($li{$nb++&255}))&63;
+$t.=$l{$ha};$iq=$l{$ha};$l{$ha}=$l{$na=$na++&63};$l{$na}=$iq;
+$t.=$l{$hb};$iq=$l{$hb};$l{$hb}=$l{$na=$na++&63};$l{$na}=$iq;
+$t.=$l{$hc};$iq=$l{$hc};$l{$hc}=$l{$na=$na++&63};$l{$na}=$iq;
+$t.=$l{$hd};$iq=$l{$hd};$l{$hd}=$l{$na=$na++&63};$l{$na}=$iq;}
 switch($c-$s){
 case 1:
-$g=ord($a{$i}^chr($r+$n))<<16;
-$he=(($g>>18)+($si+=$nb))&63;
-$t.=$l{$he};$iq=$l[$he];$l[$he]=$l[($ri+=$na)&63];$l[($ri)&63]=$iq;
-$t.=$l{(($g>>12)+($si+$nb))&63};
+$g=ord($a{$i}^chr($li{$n++&255}))<<16;
+$he=(($g>>18)+($li{$nb++&255}))&63;
+$t.=$l{$he};$iq=$l{$he};$l{$he}=$l{$na=$na++&63};$l{$na}=$iq;
+$t.=$l{(($g>>12)+($li{$nb++&255}))&63};
 break;
 case 2:
-$g=(ord($a{$i}^chr($r+=$n))<<16)+(ord($a{$i+1}^chr($r+$n))<<8);
-$he=(($g>>18)+($si+=$nb))&63;
-$t.=$l{$he};$iq=$l[$he];$l[$he]=$l[($ri+=$na)&63];$l[($ri)&63]=$iq;
-$hf=(($g>>12)+($si+=$nb))&63;
-$t.=$l{$hf};$iq=$l[$hf];$l[$hf]=$l[($ri+=$na)&63];$l[($ri)&63]=$iq;
-$t.=$l{(($g>>6)+($si+$nb))&63};
+$g=(ord($a{$i}^chr($li{$n++&255}))<<16)+(ord($a{$i+1}^chr($li{$n++&255}))<<8);
+$he=(($g>>18)+($li{$nb++&255}))&63;
+$t.=$l{$he};$iq=$l{$he};$l{$he}=$l{$na=$na++&63};$l{$na}=$iq;
+$hf=(($g>>12)+($li{$nb++&255}))&63;
+$t.=$l{$hf};$iq=$l{$hf};$l{$hf}=$l{$na=$na++&63};$l{$na}=$iq;
+$t.=$l{(($g>>6)+($li{$nb++&255}))&63};
 break;}
 $c=strlen($t);
 return substr_replace($t,$u,self::Seed($c,self::Switchkey($b,$d,$mda,$mdb,$c).$c),0);}
@@ -60,33 +61,34 @@ $u=substr($a,$mm,8);
 $pr=substr($a,-($c-$mm));
 $a=substr($a,0,$mm).(strlen($pr)==$pj?"":$pr);
 $e=self::$clef;
-$l=self::Unorder($e,md5($b.$u,true));
-$ju=md5($d.$u);$n=hexdec(substr($ju,-8))&255;$ja=md5($mda!=""?$mda.$u:$ju);$na=hexdec(substr($ja,-8))&63;$nb=hexdec(substr(md5($mdb!=""?$mdb.$u:$ja),-8))&63;
-$n=$n==0?1:$n;$na=$na==0?1:$na;$nb=$nb==0?1:$nb;
+$id=md5($b.$u,true);
+$l=self::Unorder($e,$id);
+$li=self::Unorder(range(0,255),$id,256);
+$ju=md5($d.$u);$n=hexdec(substr($ju,-8))&255;$ja=md5($mda!=""?$mda.$u:$ju);$na=hexdec(substr($ja,-8))&63;$nb=hexdec(substr(md5($mdb!=""?$mdb.$u:$ja),-8))&255;
 $da=$g="";
 $f=0;
 while($c%4!==0){$a.="=";$c=strlen($a);$c=$c-4;$f++;}
-for($ri=$si=$r=$i=0;$i<$c;$i+=4,$r++,$si++,$ri++){
-$ri=(int)fmod($ri+=$na,64);
-$ha=strpos($l,$a{$i});$iq=$l[$ha];$l[$ha]=$l[($ri+=$na)&63];$l[($ri)&63]=$iq;
-$hb=strpos($l,$a{$i+1});$iq=$l[$hb&63];$l[$hb&63]=$l[($ri+=$na)&63];$l[($ri)&63]=$iq;
-$hc=strpos($l,$a{$i+2});$iq=$l[$hc&63];$l[$hc&63]=$l[($ri+=$na)&63];$l[($ri)&63]=$iq;
-$hd=strpos($l,$a{$i+3});$iq=$l[$hd&63];$l[$hd&63]=$l[($ri+=$na)&63];$l[($ri)&63]=$iq;
-$si=(int)fmod($si+=$nb,64);
-$g=(strpos($e,$e{($ha-($si+=$nb))&63})<<18)+(strpos($e,$e{($hb-($si+=$nb))&63})<<12)+(strpos($e,$e{($hc-($si+=$nb))&63})<<6)+strpos($e,$e{($hd-($si+=$nb))&63});
-$r=(int)fmod($r+=$n,256);
-$da.=(chr($g>>16)^chr($r+=$n)).(chr(($g>>8)&255)^chr($r+=$n)).(chr($g&255)^chr($r+=$n));}
+for($n=$n,$na=$na,$nb=$nb,$i=0;$i<$c;$i+=4,$n++,$na++,$nb++){
+$na=(int)fmod($na,64);
+$ha=strpos($l,$a{$i});$iq=$l{$ha};$l{$ha}=$l{$na=$na++&63};$l{$na}=$iq;
+$hb=strpos($l,$a{$i+1});$iq=$l{$hb};$l{$hb}=$l{$na=$na++&63};$l{$na}=$iq;
+$hc=strpos($l,$a{$i+2});$iq=$l{$hc};$l{$hc}=$l{$na=$na++&63};$l{$na}=$iq;
+$hd=strpos($l,$a{$i+3});$iq=$l{$hd};$l{$hd}=$l{$na=$na++&63};$l{$na}=$iq;
+$nb=(int)fmod($nb,256);
+$g=(strpos($e,$e{($ha-($li{$nb++&255}))&63})<<18)+(strpos($e,$e{($hb-($li{$nb++&255}))&63})<<12)+(strpos($e,$e{($hc-($li{$nb++&255}))&63})<<6)+strpos($e,$e{($hd-($li{$nb++&255}))&63});
+$n=(int)fmod($n,256);
+$da.=(chr($g>>16)^chr($li{$n++&255})).(chr(($g>>8)&255)^chr($li{$n++&255})).(chr($g&255)^chr($li{$n++&255}));}
 switch($f){
 case 1:
-$he=strpos($l,$a{$i});$iq=$l[$he];$l[$he]=$l[($ri+=$na)&63];$l[($ri)&63]=$iq;
-$hf=strpos($l,$a{$i+1});$iq=$l[$hf&63];$l[$hf&63]=$l[($ri+=$na)&63];$l[($ri)&63]=$iq;
-$g=(strpos($e,$e{($he-($si+=$nb))&63})<<18)+(strpos($e,$e{($hf-($si+=$nb))&63})<<12)+(strpos($e,$e{(strpos($l,$a{$i+2})-($si+$nb))&63})<<6);
-$da.=(chr($g>>16)^chr($r+=$n)).(chr(($g>>8)&255)^chr($r+$n));
+$he=strpos($l,$a{$i});$iq=$l{$he};$l{$he}=$l{$na=$na++&63};$l{$na}=$iq;
+$hf=strpos($l,$a{$i+1});$iq=$l{$hf&63};$l{$hf&63}=$l{$na=$na++&63};$l{$na}=$iq;
+$g=(strpos($e,$e{($he-($li{$nb++&255}))&63})<<18)+(strpos($e,$e{($hf-($li{$nb++&255}))&63})<<12)+(strpos($e,$e{(strpos($l,$a{$i+2})-($li{$nb++&255}))&63})<<6);
+$da.=(chr($g>>16)^chr($li{$n++&255})).(chr(($g>>8)&255)^chr($li{$n++&255}));
 break;
 case 2:
-$he=strpos($l,$a{$i});$iq=$l[$he];$l[$he]=$l[($ri+=$na)&63];$l[($ri)&63]=$iq;
-$g=(strpos($e,$e{($he-($si+=$nb))&63})<<18)+(strpos($e,$e{(strpos($l,$a{$i+1})-($si+$nb))&63})<<12);
-$da.=chr($g>>16)^chr($r+$n);
+$he=strpos($l,$a{$i});$iq=$l{$he};$l{$he}=$l{$na=$na++&63};$l{$na}=$iq;
+$g=(strpos($e,$e{($he-($li{$nb++&255}))&63})<<18)+(strpos($e,$e{(strpos($l,$a{$i+1})-($li{$nb++&255}))&63})<<12);
+$da.=chr($g>>16)^chr($li{$n++&255});
 break;}
 if($yy){
 $pj=strlen($da);
@@ -109,8 +111,8 @@ return Base64_Encrypted::Crypter($u,$oo,microtime(true),false,"","",false);}
 private static function Unorder($x,$b,$c=64){
 $w=0;$y=strlen($b);
 for($i=0;$i<$c;$i++){
-$w=($w+ord($x[$i])+ord($b[$i%$y]))%$c;
-$j=$x[$i];$x[$i]=$x[$w];$x[$w]=$j;}
+$w=($w+ord($x{$i})+ord($b{$i%$y}))%$c;
+$j=$x{$i};$x{$i}=$x{$w};$x{$w}=$j;}
 return $x;}
 private static function Seed($b,$c){
 return round(((hexdec(substr(md5($c),-8))&2147483647)/2147483647.0)*$b);} 
