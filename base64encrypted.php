@@ -18,11 +18,12 @@ $er=self::Switchkey($b,$d,$mda,$mdb,$u);
 $a=substr_replace($a,substr(md5($a.$u,true),self::Seed(10,$er.$u),6),self::Seed($c,$u.$er),0);
 $c+=6;}
 $e=self::$clef;
-$id=md5($b.$u,true);
-$l=self::Unorder($e,$id);
-$li=self::Unorder(range(0,255),$id,256);
+$ida=md5($b.$u,true);
+$l=self::Unorder($e,$ida);
+$idb=md5($d.$u,true);
+$li=self::Unorder(range(0,255),$idb,256);
+$ju=md5($mda!=""?$mda.$u:$ida.$idb);$n=hexdec(substr($ju,-8))&255;$ja=md5($mdb!=""?$mdb.$u:$ju);$nb=hexdec(substr($ja,-8))&255;$na=hexdec(substr(md5($ja),-8))&63;
 $s=$c-$c%3;
-$ju=md5($d.$u);$n=hexdec(substr($ju,-8))&255;$ja=md5($mda!=""?$mda.$u:$ju);$na=hexdec(substr($ja,-8))&63;$nb=hexdec(substr(md5($mdb!=""?$mdb.$u:$ja),-8))&255;
 for($n=$n,$na=$na,$nb=$nb,$i=0;$i<$s;$i+=3,$n++,$na++,$nb++){
 $n=(int)fmod($n,256);$nb=(int)fmod($nb,256);$na=(int)fmod($na,64);
 $g=(ord($a{$i}^chr($li{$n++&255}))<<16)+(ord($a{$i+1}^chr($li{$n++&255}))<<8)+(ord($a{$i+2}^chr($li{$n++&255})));
@@ -61,10 +62,11 @@ $u=substr($a,$mm,8);
 $pr=substr($a,-($c-$mm));
 $a=substr($a,0,$mm).(strlen($pr)==$pj?"":$pr);
 $e=self::$clef;
-$id=md5($b.$u,true);
-$l=self::Unorder($e,$id);
-$li=self::Unorder(range(0,255),$id,256);
-$ju=md5($d.$u);$n=hexdec(substr($ju,-8))&255;$ja=md5($mda!=""?$mda.$u:$ju);$na=hexdec(substr($ja,-8))&63;$nb=hexdec(substr(md5($mdb!=""?$mdb.$u:$ja),-8))&255;
+$ida=md5($b.$u,true);
+$l=self::Unorder($e,$ida);
+$idb=md5($d.$u,true);
+$li=self::Unorder(range(0,255),$idb,256);
+$ju=md5($mda!=""?$mda.$u:$ida.$idb);$n=hexdec(substr($ju,-8))&255;$ja=md5($mdb!=""?$mdb.$u:$ju);$nb=hexdec(substr($ja,-8))&255;$na=hexdec(substr(md5($ja),-8))&63;
 $da=$g="";
 $f=0;
 while($c%4!==0){$a.="=";$c=strlen($a);$c=$c-4;$f++;}
@@ -110,11 +112,10 @@ for($i=1;$i<7;$i++){$fd=chr((int)self::Seed(255,$oo));$oo=fmod($oo+=ord($fd)+$i+
 return Base64_Encrypted::Crypter($u,$oo,microtime(true),false,"","",false);}
 private static function Unorder($x,$b,$c=64){
 $w=0;$y=strlen($b);
-for($i=0;$i<$c;$i++){
-$w=($w+ord($x{$i})+ord($b{$i%$y}))%$c;
-$j=$x{$i};$x{$i}=$x{$w};$x{$w}=$j;}
+for($i=0;$i<$c;$i++){$w=($w+ord($x{$i})+ord($b{$i%$y}))%$c;$j=$x{$i};$x{$i}=$x{$w};$x{$w}=$j;}
 return $x;}
 private static function Seed($b,$c){
 return round(((hexdec(substr(md5($c),-8))&2147483647)/2147483647.0)*$b);} 
 }
+
 ?>
