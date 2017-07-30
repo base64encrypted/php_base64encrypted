@@ -7,7 +7,8 @@ Base64_Encrypted::Crypter("Hello World ! My nickname is Boby. Have fun.","My Fir
  
  and to decrypt:
  
-Base64_Encrypted::Decrypter( "bAKW1BoAIQhv+ykeIQYpDbyyYFDIUpY4lf76bVkpxhFylmW/4d/DWkzNGLq6utiK/o5", "My First Key", "Anti Force Brute Second Key");
+Base64_Encrypted::Decrypter( "ftP8YVpwMdNst0D7K0Z8DTt694BSLfbB1nZ5ab8SAIqt5T3+KKqXOzOyhjDRK1LZRbQ", "My First Key", "Anti Force Brute Second Key");
+
  
  To check the integrity of the encrypted data, add true to the fourth parameter.
  
@@ -17,14 +18,16 @@ Base64_Encrypted::Crypter("Hello World ! My nickname is Boby. Have fun.","My Fir
 
 and to decrypt:
 
-Base64_Encrypted::Decrypter( "26pIrQxW2zxqadliRv4hCfiCQh4uRp+Q2uAJj8WHH+/q6Mf1rfvJD8/oqHJES3c6dq4PTjW82Ji","My First Key", "Anti Force Brute Second Key", true);
+Base64_Encrypted::Decrypter( "KG+7X1Xz/VtELJhd3VDdR9Qkf4FSRehx9uBxJWClDqhduUXNC6nli1vo1u40AJUbycBsxZBNxea","My First Key", "Anti Force Brute Second Key", true);
+
 
 
 The "Paranoiac" mode allows to add two other passwords to annihilate any attempt of attack by brute force and without affecting performances:
 
 Example:
 
-Base64_Encrypted::Crypter( "Hello World ! My nickname is Boby. Have fun.", "My First Key","Anti Force Brute Second Key", true, "Paranoiac Key 1", "Paranoiac Key 2");
+Base64_Encrypted::Decrypter( "iBIeQ3lnd8sJmd6y0MFA5MRJgjy7CBCOc+emF7KbNM0X13/6AQeWA0r/gLe5Or9MUSZD2VPHE2Y", "My First Key","Anti Force Brute Second Key", true, "Paranoiac Key 1", "Paranoiac Key 2");
+
 
 
 and to decrypt:
