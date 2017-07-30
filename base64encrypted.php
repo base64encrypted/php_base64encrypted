@@ -10,20 +10,19 @@ In this case take care to adapt the regex accordingly (see bold line).
 private static $clef="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
 public static function Crypter($a,$b,$d,$yy=false,$mda="",$mdb="",$xx=true){
 if($a==""||$b==""||$d==""||!is_bool($yy)||!is_bool($xx))return $a;
-$t=$g="";
-$u=$xx?self::Urand():"";
+$u=$xx?self::Uranc($b,$d,$mda,$mdb):array("","");
 $c=strlen($a);
 if($yy){
-$er=self::Switchkey($b,$d,$mda,$mdb,$u);
-$a=substr_replace($a,substr(md5($a.$u,true),self::Seed(10,$er.$u),6),self::Seed($c,$u.$er),0);
+$er=self::Switchkey($b,$d,$mda,$mdb,$u[1]);
+$a=substr_replace($a,substr(md5($a.$u[1],true),self::Seed(10,$er.$u[1]),6),self::Seed($c,$u[1].$er),0);
 $c+=6;}
 $e=self::$clef;
-$ida=md5($b.$u,true);
+$ida=md5($b.$u[1],true);
 $l=self::Unorder($e,$ida);
-$idb=md5($d.$u,true);
+$idb=md5($d.$u[1],true);
 $li=self::Unorder(range(0,255),$idb,256);
-$ju=md5($mda!=""?$mda.$u:$ida.$idb);$n=hexdec(substr($ju,-8))&255;$ja=md5($mdb!=""?$mdb.$u:$ju);$nb=hexdec(substr($ja,-8))&255;$na=hexdec(substr(md5($ja),-8))&63;
-$s=$c-$c%3;
+$ju=md5($mda!=""?$mda.$u[1]:$ida.$idb);$n=hexdec(substr($ju,-8))&255;$ja=md5($mdb!=""?$mdb.$u[1]:$ju);$nb=hexdec(substr($ja,-8))&255;$na=hexdec(substr(md5($ja),-8))&63;
+$s=$c-$c%3;$t=$g="";
 for($n=$n,$na=$na,$nb=$nb,$i=0;$i<$s;$i+=3,$n++,$na++,$nb++){
 $n=(int)fmod($n,256);$nb=(int)fmod($nb,256);$na=(int)fmod($na,64);
 $g=(ord($a{$i}^chr($li{$n++&255}))<<16)+(ord($a{$i+1}^chr($li{$n++&255}))<<8)+(ord($a{$i+2}^chr($li{$n++&255})));
@@ -48,26 +47,28 @@ $t.=$l{$hf};$iq=$l{$hf};$l{$hf}=$l{$na=$na++&63};$l{$na}=$iq;
 $t.=$l{(($g>>6)+($li{$nb++&255}))&63};
 break;}
 $c=strlen($t);
-return substr_replace($t,$u,self::Seed($c,self::Switchkey($b,$d,$mda,$mdb,$c).$c),0);}
-public static function Decrypter($a,$b,$d,$yy=false,$mda="",$mdb=""){
+return substr_replace($t,$u[0],self::Seed($c,self::Switchkey($b,$d,$mda,$mdb,$c).$c),0);}
+public static function Decrypter($a,$b,$d,$yy=false,$mda="",$mdb="",$xx=true){
 /*
 For URL encryption, change the regex with this one:
 if(!preg_match("/^[A-z0-9_-]+$/",$a)||$b=="")return $a;
 */
-if(!preg_match("/^[A-z0-9\/+]+$/",$a)||$b==""||$d==""||!is_bool($yy))return $a;
-$pj=strlen($a);
-$c=$pj-8;
+if(!preg_match("/^[A-z0-9\/+]+$/",$a)||$b==""||$d==""||!is_bool($yy)||!is_bool($xx))return $a;
+$c=strlen($a);
+$da=$g=$u="";
+if($xx){
+$c-=8;
 $mm=self::Seed($c,self::Switchkey($b,$d,$mda,$mdb,$c).$c);
 $u=substr($a,$mm,8);
 $pr=substr($a,-($c-$mm));
-$a=substr($a,0,$mm).(strlen($pr)==$pj?"":$pr);
+$a=substr($a,0,$mm).(strlen($pr)==$c+8?"":$pr);
+$u=self::Urand($u,$b,$d,$mda,$mdb);}
 $e=self::$clef;
 $ida=md5($b.$u,true);
 $l=self::Unorder($e,$ida);
 $idb=md5($d.$u,true);
 $li=self::Unorder(range(0,255),$idb,256);
 $ju=md5($mda!=""?$mda.$u:$ida.$idb);$n=hexdec(substr($ju,-8))&255;$ja=md5($mdb!=""?$mdb.$u:$ju);$nb=hexdec(substr($ja,-8))&255;$na=hexdec(substr(md5($ja),-8))&63;
-$da=$g="";
 $f=0;
 while($c%4!==0){$a.="=";$c=strlen($a);$c=$c-4;$f++;}
 for($n=$n,$na=$na,$nb=$nb,$i=0;$i<$c;$i+=4,$n++,$na++,$nb++){
@@ -106,10 +107,12 @@ $gk=3;$dq=array(0=>$b,1=>$d);
 $mda!=""?array_push($dq,$mda):$gk--;
 $mdb!=""?array_push($dq,$mdb):$gk--;
 return $dq[self::Seed($gk,($mda!=""?$mda:($mdb!=""?$mdb:$d)).$c)];}
-private static function Urand(){
+private static function Uranc($b,$d,$mda,$mdb){
 $u="";$oo=mt_rand(0,1073741823);
 for($i=1;$i<7;$i++){$fd=chr((int)self::Seed(255,$oo));$oo=fmod($oo+=ord($fd)+$i+mt_rand(0,1073741569-(ord($fd)+$i)),1073741824);$u.=$fd;}
-return Base64_Encrypted::Crypter($u,$oo,microtime(true),false,"","",false);}
+return array(Base64_Encrypted::Crypter($u,$b,$d,false,$mda,$mda,false),$u);}
+private static function Urand($u,$b,$d,$mda,$mdb){
+return Base64_Encrypted::Decrypter($u,$b,$d,false,$mda,$mda,false);}
 private static function Unorder($x,$b,$c=64){
 $w=0;$y=strlen($b);
 for($i=0;$i<$c;$i++){$w=($w+ord($x{$i})+ord($b{$i%$y}))%$c;$j=$x{$i};$x{$i}=$x{$w};$x{$w}=$j;}
