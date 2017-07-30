@@ -62,7 +62,7 @@ $mm=self::Seed($c,self::Switchkey($b,$d,$mda,$mdb,$c).$c);
 $u=substr($a,$mm,8);
 $pr=substr($a,-($c-$mm));
 $a=substr($a,0,$mm).(strlen($pr)==$c+8?"":$pr);
-$u=self::Urand($u,$b,$d,$mda,$mdb);}
+$u=Base64_Encrypted::Decrypter($u,$b,$d,false,$mda,$mda,false);}
 $e=self::$clef;
 $ida=md5($b.$u,true);
 $l=self::Unorder($e,$ida);
@@ -111,8 +111,6 @@ private static function Uranc($b,$d,$mda,$mdb){
 $u="";$oo=mt_rand(0,1073741823);
 for($i=1;$i<7;$i++){$fd=chr((int)self::Seed(255,$oo));$oo=fmod($oo+=ord($fd)+$i+mt_rand(0,1073741569-(ord($fd)+$i)),1073741824);$u.=$fd;}
 return array(Base64_Encrypted::Crypter($u,$b,$d,false,$mda,$mda,false),$u);}
-private static function Urand($u,$b,$d,$mda,$mdb){
-return Base64_Encrypted::Decrypter($u,$b,$d,false,$mda,$mda,false);}
 private static function Unorder($x,$b,$c=64){
 $w=0;$y=strlen($b);
 for($i=0;$i<$c;$i++){$w=($w+ord($x{$i})+ord($b{$i%$y}))%$c;$j=$x{$i};$x{$i}=$x{$w};$x{$w}=$j;}
