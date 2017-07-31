@@ -24,12 +24,12 @@ and to decrypt:
 > Base64_Encrypted::Decrypter( "zmdNipaIoy4V/I64sWo1HmEjK+ZPShozzZvMqgjQfZ0taRKYreIktP/bhcXpAuEoUxInSPaFv7A", "My First Key", "My second Key", "My third Key", "My fourth Key", **true**);
 
 
-<br>
+<br><br>
 
 
 
 
 
-Ref: http://inseparables.j-ad.net/archives/24/
+Source: http://inseparables.j-ad.net/archives/24/
 
 *PS: Un big merci à Steph dit la fouine :) pour ses avis éclairés !*
