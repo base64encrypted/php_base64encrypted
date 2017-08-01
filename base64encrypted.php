@@ -89,11 +89,10 @@ $g=(strpos($e,$e{($he-($li{$nb++&255}))&63})<<18)+(strpos($e,$e{(strpos($l,$a{$i
 $da.=chr($g>>16)^chr($li{$n++&255});
 break;}
 if($yy){
-$pj=strlen($da);
-$c=$pj-6;
+$c=strlen($da)-6;
 $mm=self::Seed($c,$u.$mdb);
 $pr=substr($da,-($c-$mm));
-$a=substr($da,0,$mm).(strlen($pr)==$pj?"":$pr);
+$a=substr($da,0,$mm).(strlen($pr)==$c+6?"":$pr);
 $da=substr(md5($a.$u,true),self::Seed(10,$mdb.$u),6)!=substr($da,$mm,6)?die("Corrupted data !"):$a;}
 return $da;}
 private static function Uranc($b,$d,$mda){
