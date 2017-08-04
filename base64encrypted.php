@@ -16,7 +16,7 @@ if($yy){$a=substr_replace($a,substr(hash("md4",$a.$u[1],true),self::Seed(10,$mdb
 $e=self::$clef;
 $l=self::Unorder($e,self::keylen($u[1].$b,3));
 $li=self::Unorder(range(0,255),self::keylen($u[1].$d,15),256);
-$n=self::Hashich($mda.$u[1]);$nb=self::Hashich($n);$na=self::Hashich($nb);
+$n=self::Hashich($u[1].$mda);$nb=self::Hashich($n);$na=self::Hashich($nb);
 $s=$c-$c%3;$t=$g="";
 for($n=$n,$na=$na,$nb=$nb,$i=0;$i<$s;$i+=3,$n++,$na++,$nb++){
 $n=(int)fmod($n,256);$nb=(int)fmod($nb,256);$na=(int)fmod($na,64);
@@ -61,7 +61,7 @@ $u=Base64_Encrypted::Decrypter($u,$b,$d,$mda," ",false,false);}
 $e=self::$clef;
 $l=self::Unorder($e,self::keylen($u.$b,3));
 $li=self::Unorder(range(0,255),self::keylen($u.$d,15),256);
-$n=self::Hashich($mda.$u);$nb=self::Hashich($n);$na=self::Hashich($nb);
+$n=self::Hashich($u.$mda);$nb=self::Hashich($n);$na=self::Hashich($nb);
 $f=0;
 while($c%4!==0){$a.="=";$c=strlen($a);$c=$c-4;$f++;}
 for($n=$n,$na=$na,$nb=$nb,$i=0;$i<$c;$i+=4,$n++,$na++,$nb++){
