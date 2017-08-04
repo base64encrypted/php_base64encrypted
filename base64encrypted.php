@@ -12,7 +12,7 @@ public static function Crypter($a,$b,$d,$mda,$mdb,$yy=false,$xx=true){
 if($a==""||$b==""||$d==""||$mda==""||$mdb==""||!is_bool($yy)||!is_bool($xx))return $a;
 $u=$xx?self::Uranc($b,$d,$mda):array("","");
 $c=strlen($a);
-if($yy){$a=substr_replace($a,substr(hash("md4",$a.$u[1],true),self::Seed(10,$mdb.$u[1]),6),self::Seed($c,$u[1].$mdb),0);$c+=6;}
+if($yy){$a=substr_replace($a,substr(hash("md4",$a.$u[1],true),self::Seed(10,$u[0].$mdb),6),self::Seed($c,$u[1].$mdb),0);$c+=6;}
 $e=self::$clef;
 $l=self::Unorder($e,self::keylen($u[1].$b,3));
 $li=self::Unorder(range(0,255),self::keylen($u[1].$d,15),256);
@@ -42,7 +42,7 @@ $t.=$l{$hf};$iq=$l{$hf};$l{$hf}=$l{$na=$na++&63};$l{$na}=$iq;
 $t.=$l{(($g>>6)+($li{$nb++&255}))&63};
 break;}
 $c=strlen($t);
-return substr_replace($t,$u[0],self::Seed($c,$mdb.$c),0);}
+return substr_replace($t,$u[0],self::Seed($c,$c.$mdb),0);}
 public static function Decrypter($a,$b,$d,$mda,$mdb,$yy=false,$xx=true){
 /*
 For URL encryption, change the regex with this one:
@@ -53,7 +53,7 @@ $c=strlen($a);
 $da=$g=$u="";
 if($xx){
 $c-=8;
-$mm=self::Seed($c,$mdb.$c);
+$mm=self::Seed($c,$c.$mdb);
 $u=substr($a,$mm,8);
 $pr=substr($a,-($c-$mm));
 $a=substr($a,0,$mm).(strlen($pr)==$c+8?"":$pr);
@@ -91,7 +91,7 @@ $c=strlen($da)-6;
 $mm=self::Seed($c,$u.$mdb);
 $pr=substr($da,-($c-$mm));
 $a=substr($da,0,$mm).(strlen($pr)==$c+6?"":$pr);
-$da=substr(hash("md4",$a.$u,true),self::Seed(10,$mdb.$u),6)!=substr($da,$mm,6)?die("Corrupted data !"):$a;}
+$da=substr(hash("md4",$a.$u,true),self::Seed(10,$pr.$mdb),6)!=substr($da,$mm,6)?die("Corrupted data !"):$a;}
 return $da;}
 private static function Uranc($b,$d,$mda){
 $u="";$oo=mt_rand(0,255);
