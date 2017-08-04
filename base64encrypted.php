@@ -54,10 +54,10 @@ $da=$g=$u="";
 if($xx){
 $c-=8;
 $mm=self::Seed($c,$c.$mdb);
-$u=substr($a,$mm,8);
+$uu=substr($a,$mm,8);
 $pr=substr($a,-($c-$mm));
 $a=substr($a,0,$mm).(strlen($pr)==$c+8?"":$pr);
-$u=Base64_Encrypted::Decrypter($u,$b,$d,$mda," ",false,false);}
+$u=Base64_Encrypted::Decrypter($uu,$b,$d,$mda," ",false,false);}
 $e=self::$clef;
 $l=self::Unorder($e,self::keylen($u.$b,3));
 $li=self::Unorder(range(0,255),self::keylen($u.$d,15),256);
@@ -91,7 +91,7 @@ $c=strlen($da)-6;
 $mm=self::Seed($c,$u.$mdb);
 $pr=substr($da,-($c-$mm));
 $a=substr($da,0,$mm).(strlen($pr)==$c+6?"":$pr);
-$da=substr(hash("md4",$a.$u,true),self::Seed(10,$pr.$mdb),6)!=substr($da,$mm,6)?die("Corrupted data !"):$a;}
+$da=substr(hash("md4",$a.$u,true),self::Seed(10,$uu.$mdb),6)!=substr($da,$mm,6)?die("Corrupted data !"):$a;}
 return $da;}
 private static function Uranc($b,$d,$mda){
 $u="";$oo=mt_rand(0,255);
