@@ -111,6 +111,6 @@ private static function Unorder($x,$b,$c=64){
 $w=0;$y=strlen($b);$t=$b;
 for($i=0;$i<$c;$i++){$w=($w+ord($x{$i})+ord($b{$i%$y}))%$c;$j=$x{$i};$x{$i}=$x{$w};$x{$w}=$j;}
 return $x;}
-private static function Seed($b,$c){return round((self::Hashich($c)&2147483647/2147483647.0)*$b);} 
+private static function Seed($b,$c){return round(((int)(self::Hashich($c)&2147483647)/2147483647.0)*$b);} 
 }
 ?>
