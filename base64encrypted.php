@@ -103,7 +103,7 @@ $a=substr($da,0,$mm).(strlen($pr)==$c+6?"":$pr);
 $da=substr(hash("md4",$a.$u,true),self::Seed(10,$uu.$mdb),6)!=substr($da,$mm,6)?die("Corrupted data !"):$a;}
 return $da;}
 private static function Uranc($b,$mda){
-$u=Hashich("",6,true,true);
+$u=self::Hashich("",6,true,true);
 return array(Base64_Encrypted::Crypter($u,$b,$mda," ",false,false),$u);}
 private static function Hashich($b,$e=0,$y=false,$z=false){
 $b=(string)$b;$a=2166136261;$p="";$l=strlen($b);$e=$y?$e:$l;
