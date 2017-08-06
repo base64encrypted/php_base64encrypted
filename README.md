@@ -9,7 +9,7 @@ Encrypt base64 via PHP. Short, fast, easy, practice and safe (-quantom aside ^_^
  
  and to decrypt:
  
-> Base64_Encrypted::Decrypter( "2b30Q4Ffme/hBYe34bwq2s4EL6UcfOfkteynvm5VCVf+yyApw3efOYgxT6QK1p1iHK1", "My First Key", "My second Key", "My third Key", "My fourth Key");
+> Base64_Encrypted::Decrypter( "tY9L1v1sR8Z/ceh1p2T6DPanmN4oEnCk4mUIGqW5yRhwp0Uo/MGT/tHuC6GbfCF3dlu", "My First Key", "My second Key", "My third Key", "My fourth Key");
 
 
 <br><br>
@@ -22,7 +22,7 @@ Encrypt base64 via PHP. Short, fast, easy, practice and safe (-quantom aside ^_^
 
 and to decrypt:
 
-> Base64_Encrypted::Decrypter( "+jDV6LWq/zl8xHbkrQ8+nFLr/QC5Z7RZlMqcihpF5Y1ytXWTfbhzi5INXTn56cPPJN5T5N9l7Nw", "My First Key", "My second Key", "My third Key", "My fourth Key", **true**);
+> Base64_Encrypted::Decrypter( "V7BWzsL5JBV6cQn8AeOrXz3n58TleD5U4dExny+fWZaEBSUISD8EtJSbfAZHIHJWxRceIXSTU+X", "My First Key", "My second Key", "My third Key", "My fourth Key", **true**);
 
 
 <br><br>
