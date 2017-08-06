@@ -14,7 +14,7 @@ Encrypt base64 via PHP. Short, fast, easy, practice and safe (-quantom aside ^_^
 
 <br><br>
  
- To check the integrity of the encrypted data, add true to the sixth parameter.
+ To check the integrity of the encrypted data, add true to the fifth parameter.
  
 ## Example:
  
