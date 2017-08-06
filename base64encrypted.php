@@ -24,7 +24,7 @@ $j=$h=(($j<<5)-$j)%2147483647;$ha=(($g>>18)+$h&255)&63;
 $j=$h=(($j<<5)-$j)%2147483647;$hb=(($g>>12)+$h&255)&63;
 $j=$h=(($j<<5)-$j)%2147483647;$hc=(($g>>6)+$h&255)&63;
 $j=$h=(($j<<5)-$j)%2147483647;$hd=($g+$h&255)&63;
-$t.=$l{$ha};$iq=$l{$ha};$l{$ha}=$l{$na=$na++};$l{$na}=$iq;
+$t.=$l{$ha};$iq=$l{$ha};$l{$ha}=$l{$na=$na++&63};$l{$na}=$iq;
 $t.=$l{$hb};$iq=$l{$hb};$l{$hb}=$l{$na=$na++&63};$l{$na}=$iq;
 $t.=$l{$hc};$iq=$l{$hc};$l{$hc}=$l{$na=$na++&63};$l{$na}=$iq;
 $t.=$l{$hd};$iq=$l{$hd};$l{$hd}=$l{$na=$na++&63};$l{$na}=$iq;}
@@ -67,7 +67,7 @@ $n=self::Hashich($u.$mda);$j=self::Hashich($n);$na=self::Hashich($j)&63;
 $f=0;
 while($c%4!==0){$a.="=";$c=strlen($a);$c=$c-4;$f++;}
 for($na=$na,$i=0;$i<$c;$i+=4,$na++&63){
-$ha=strpos($l,$a{$i});$iq=$l{$ha};$l{$ha}=$l{$na=$na++};$l{$na}=$iq;
+$ha=strpos($l,$a{$i});$iq=$l{$ha};$l{$ha}=$l{$na=$na++&63};$l{$na}=$iq;
 $hb=strpos($l,$a{$i+1});$iq=$l{$hb};$l{$hb}=$l{$na=$na++&63};$l{$na}=$iq;
 $hc=strpos($l,$a{$i+2});$iq=$l{$hc};$l{$hc}=$l{$na=$na++&63};$l{$na}=$iq;
 $hd=strpos($l,$a{$i+3});$iq=$l{$hd};$l{$hd}=$l{$na=$na++&63};$l{$na}=$iq;
