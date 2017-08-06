@@ -5,11 +5,11 @@ Encrypt base64 via PHP. Short, fast, easy, practice and safe (-quantom aside ^_^
 
 ## Example: 
 
-> Base64_Encrypted::Crypter("Hello World ! My nickname is Boby. Have fun.", "My First Key", "My second Key", "My third Key", "My fourth Key");
+> Base64_Encrypted::Crypter("Hello World ! My nickname is Boby. Have fun.", "My First Key", "My second Key", "My third Key");
  
  and to decrypt:
  
-> Base64_Encrypted::Decrypter( "tY9L1v1sR8Z/ceh1p2T6DPanmN4oEnCk4mUIGqW5yRhwp0Uo/MGT/tHuC6GbfCF3dlu", "My First Key", "My second Key", "My third Key", "My fourth Key");
+> Base64_Encrypted::Decrypter( "tY9L1v1sR8Z/ceh1p2T6DPanmN4oEnCk4mUIGqW5yRhwp0Uo/MGT/tHuC6GbfCF3dlu", "My First Key", "My second Key", "My third Key");
 
 
 <br><br>
@@ -18,11 +18,11 @@ Encrypt base64 via PHP. Short, fast, easy, practice and safe (-quantom aside ^_^
  
 ## Example:
  
-> Base64_Encrypted::Crypter("Hello World ! My nickname is Boby. Have fun.", "My First Key", "My second Key", "My third Key", "My fourth Key", **true**);
+> Base64_Encrypted::Crypter("Hello World ! My nickname is Boby. Have fun.", "My First Key", "My second Key", "My third Key", **true**);
 
 and to decrypt:
 
-> Base64_Encrypted::Decrypter( "V7BWzsL5JBV6cQn8AeOrXz3n58TleD5U4dExny+fWZaEBSUISD8EtJSbfAZHIHJWxRceIXSTU+X", "My First Key", "My second Key", "My third Key", "My fourth Key", **true**);
+> Base64_Encrypted::Decrypter( "V7BWzsL5JBV6cQn8AeOrXz3n58TleD5U4dExny+fWZaEBSUISD8EtJSbfAZHIHJWxRceIXSTU+X", "My First Key", "My second Key", "My third Key", **true**);
 
 
 <br><br>
