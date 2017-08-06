@@ -108,7 +108,7 @@ return array(Base64_Encrypted::Crypter($u,$b,$mda," ",false,false),$u);}
 private static function Hashich($b,$e=0,$y=false,$z=false){
 $b=(string)$b;$a=2166136261;$p="";$l=strlen($b);$e=$y?$e:$l;
 for($ii=$i=0;$i<$e;$i++,$ii++){$a^=$z?mt_rand(0,255):ord($b{$ii});$a+=(($a<<1)+($a<<4)+($a<<7)+($a<<8)+($a<<24))%2147483647;if($y){$p.=chr((int)$a);if($ii>=$l-1)$ii=-1;}}
-return $y?$p:$a;}
+return $y?$p:(int)$a;}
 private static function Unorder($x,$b,$c=64){
 $w=0;$y=strlen($b);$t=$b;
 for($i=0;$i<$c;$i++){$w=($w+ord($x{$i})+ord($b{$i%$y}))%$c;$j=$x{$i};$x{$i}=$x{$w};$x{$w}=$j;}
