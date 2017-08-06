@@ -12,33 +12,32 @@ public static function Crypter($a,$b,$mda,$mdb,$yy=false,$xx=true){
 if($a==""||$b==""||$mda==""||$mdb==""||!is_bool($yy)||!is_bool($xx))return $a;
 $u=$xx?self::Uranc($b,$mda):array("","");
 $c=strlen($a);
-if($yy){$a=substr_replace($a,substr(hash("md4",$a.$u[1],true),self::Seed(10,$u[0].$mdb),6),self::Seed($c,$u[1].$mdb),0);$c+=6;}
-$e=self::$clef;
-$l=self::Unorder($e,self::Hashich($u[1].substr($b,0,58),64,true));
+if($yy){$a=substr_replace($a,substr(hash("md4",$u[1].$a,true),self::Seed(10,$u[0].$mdb),6),self::Seed($c,$u[1].$mdb),0);$c+=6;}
+$l=self::Unorder(self::$clef,self::Hashich($u[1].substr($b,0,58),64,true));
 $n=self::Hashich($u[1].$mda);$j=self::Hashich($n);$na=self::Hashich($j)&63;
 $s=$c-$c%3;$t=$g="";
 for($na=$na,$i=0;$i<$s;$i+=3,$na++&63){
-$n=$h=(($n<<5)-$n)%2147483647;$g=(ord($a{$i}^chr($h&255))<<16);
-$n=$h=(($n<<5)-$n)%2147483647;$g+=(ord($a{$i+1}^chr($h&255))<<8);
-$n=$h=(($n<<5)-$n)%2147483647;$g+=(ord($a{$i+2}^chr($h&255)));
+$n=$h=(($n<<5)-$n)%2147483647;$g=(ord($a{$i}^chr($h))<<16);
+$n=$h=(($n<<5)-$n)%2147483647;$g+=(ord($a{$i+1}^chr($h))<<8);
+$n=$h=(($n<<5)-$n)%2147483647;$g+=(ord($a{$i+2}^chr($h)));
 $j=$h=(($j<<5)-$j)%2147483647;$ha=(($g>>18)+$h&255)&63;
 $j=$h=(($j<<5)-$j)%2147483647;$hb=(($g>>12)+$h&255)&63;
 $j=$h=(($j<<5)-$j)%2147483647;$hc=(($g>>6)+$h&255)&63;
 $j=$h=(($j<<5)-$j)%2147483647;$hd=($g+$h&255)&63;
-$t.=$l{$ha};$iq=$l{$ha};$l{$ha}=$l{$na=$na++&63};$l{$na}=$iq;
+$t.=$l{$ha};$iq=$l{$ha};$l{$ha}=$l{$na=$na++};$l{$na}=$iq;
 $t.=$l{$hb};$iq=$l{$hb};$l{$hb}=$l{$na=$na++&63};$l{$na}=$iq;
 $t.=$l{$hc};$iq=$l{$hc};$l{$hc}=$l{$na=$na++&63};$l{$na}=$iq;
 $t.=$l{$hd};$iq=$l{$hd};$l{$hd}=$l{$na=$na++&63};$l{$na}=$iq;}
 switch($c-$s){
 case 1:
-$g=(ord($a{$i}^chr((($n<<5)-$n)&255))<<16);
+$g=(ord($a{$i}^chr(($n<<5)-$n))<<16);
 $j=$h=(($j<<5)-$j)%2147483647;$he=(($g>>18)+$h&255)&63;
 $t.=$l{$he};$iq=$l{$he};$l{$he}=$l{$na=$na++&63};$l{$na}=$iq;
 $t.=$l{(($g>>12)+(($j<<5)-$j)&255)&63};
 break;
 case 2:
-$n=$h=(($n<<5)-$n)%2147483647;$g=(ord($a{$i}^chr($h&255))<<16);
-$g+=(ord($a{$i+1}^chr((($n<<5)-$n)&255))<<8);
+$n=$h=(($n<<5)-$n)%2147483647;$g=(ord($a{$i}^chr($h))<<16);
+$g+=(ord($a{$i+1}^chr(($n<<5)-$n))<<8);
 $j=$h=(($j<<5)-$j)%2147483647;$he=(($g>>18)+$h&255)&63;
 $j=$h=(($j<<5)-$j)%2147483647;$hf=(($g>>12)+$h&255)&63;
 $t.=$l{$he};$iq=$l{$he};$l{$he}=$l{$na=$na++&63};$l{$na}=$iq;
@@ -68,7 +67,7 @@ $n=self::Hashich($u.$mda);$j=self::Hashich($n);$na=self::Hashich($j)&63;
 $f=0;
 while($c%4!==0){$a.="=";$c=strlen($a);$c=$c-4;$f++;}
 for($na=$na,$i=0;$i<$c;$i+=4,$na++&63){
-$ha=strpos($l,$a{$i});$iq=$l{$ha};$l{$ha}=$l{$na=$na++&63};$l{$na}=$iq;
+$ha=strpos($l,$a{$i});$iq=$l{$ha};$l{$ha}=$l{$na=$na++};$l{$na}=$iq;
 $hb=strpos($l,$a{$i+1});$iq=$l{$hb};$l{$hb}=$l{$na=$na++&63};$l{$na}=$iq;
 $hc=strpos($l,$a{$i+2});$iq=$l{$hc};$l{$hc}=$l{$na=$na++&63};$l{$na}=$iq;
 $hd=strpos($l,$a{$i+3});$iq=$l{$hd};$l{$hd}=$l{$na=$na++&63};$l{$na}=$iq;
@@ -76,31 +75,31 @@ $j=$h=(($j<<5)-$j)%2147483647;$g=strpos($e,$e{($ha-$h&255)&63})<<18;
 $j=$h=(($j<<5)-$j)%2147483647;$g+=strpos($e,$e{($hb-$h&255)&63})<<12;
 $j=$h=(($j<<5)-$j)%2147483647;$g+=strpos($e,$e{($hc-$h&255)&63})<<6;
 $j=$h=(($j<<5)-$j)%2147483647;$g+=strpos($e,$e{($hd-$h&255)&63});
-$n=$h=(($n<<5)-$n)%2147483647;$da.=(chr($g>>16)^chr($h&255));
-$n=$h=(($n<<5)-$n)%2147483647;$da.=(chr($g>>8)^chr($h&255));
-$n=$h=(($n<<5)-$n)%2147483647;$da.=(chr($g)^chr($h&255));}
+$n=$h=(($n<<5)-$n)%2147483647;$da.=(chr($g>>16)^chr($h));
+$n=$h=(($n<<5)-$n)%2147483647;$da.=(chr($g>>8)^chr($h));
+$n=$h=(($n<<5)-$n)%2147483647;$da.=(chr($g)^chr($h));}
 switch($f){
 case 1:
 $he=strpos($l,$a{$i});$iq=$l{$he};$l{$he}=$l{$na=$na++&63};$l{$na}=$iq;
 $hf=strpos($l,$a{$i+1});$iq=$l{$hf&63};$l{$hf&63}=$l{$na=$na++&63};$l{$na}=$iq;
-$j=$h=(($j<<5)-$j)%2147483647;;$g=strpos($e,$e{($he-$h&255)&63})<<18;
+$j=$h=(($j<<5)-$j)%2147483647;$g=strpos($e,$e{($he-$h&255)&63})<<18;
 $j=$h=(($j<<5)-$j)%2147483647;$g+=strpos($e,$e{($hf-$h&255)&63})<<12;
 $g+=strpos($e,$e{(strpos($l,$a{$i+2})-(($j<<5)-$j)&255)&63})<<6;
-$n=$h=(($n<<5)-$n)%2147483647;$da.=(chr($g>>16)^chr($h&255));
-$da.=(chr($g>>8)^chr((($n<<5)-$n)&255));
+$n=$h=(($n<<5)-$n)%2147483647;$da.=(chr($g>>16)^chr($h));
+$da.=(chr($g>>8)^chr(($n<<5)-$n));
 break;
 case 2:
 $he=strpos($l,$a{$i});$iq=$l{$he};$l{$he}=$l{$na=$na++&63};$l{$na}=$iq;
 $j=$h=(($j<<5)-$j)%2147483647;$g=(strpos($e,$e{($he-$h&255)&63})<<18);
 $g+=(strpos($e,$e{(strpos($l,$a{$i+1})-((($j<<5)-$j)&255))&63})<<12);
-$da.=(chr($g>>16)^chr((($n<<5)-$n)&255));
+$da.=(chr($g>>16)^chr(($n<<5)-$n));
 break;}
 if($yy){
 $c=strlen($da)-6;
 $mm=self::Seed($c,$u.$mdb);
 $pr=substr($da,-($c-$mm));
 $a=substr($da,0,$mm).(strlen($pr)==$c+6?"":$pr);
-$da=substr(hash("md4",$a.$u,true),self::Seed(10,$uu.$mdb),6)!=substr($da,$mm,6)?die("Corrupted data !"):$a;}
+$da=substr(hash("md4",$u.$a,true),self::Seed(10,$uu.$mdb),6)!=substr($da,$mm,6)?die("Corrupted data !"):$a;}
 return $da;}
 private static function Uranc($b,$mda){
 $u=self::Hashich("",6,true,true);
