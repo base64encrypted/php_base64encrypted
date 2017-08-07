@@ -21,12 +21,12 @@ Base64_Encrypted::Decrypter( "0Cir0od46bIymT5d1KurUV8bQenWyz5aX1Kd0SV/m6y3ZeptXz
 ## Example:
  
 ```php
-Base64_Encrypted::Crypter("Hello World ! My nickname is Boby. Have fun.", "My First Key", "My second Key", "My third Key", **true**);
+Base64_Encrypted::Crypter("Hello World ! My nickname is Boby. Have fun.", "My First Key", "My second Key", "My third Key", true);
 ```
 and to decrypt:
 
 ```php
-Base64_Encrypted::Decrypter( "rVq7JX4JYuXGsl3c3/FmQhISu0THJjCIZSujntJilZbZ7ZmAFBswUUK5OSD00pGgmPrN/LLbw/4", "My First Key", "My second Key", "My third Key", **true**);
+Base64_Encrypted::Decrypter( "rVq7JX4JYuXGsl3c3/FmQhISu0THJjCIZSujntJilZbZ7ZmAFBswUUK5OSD00pGgmPrN/LLbw/4", "My First Key", "My second Key", "My third Key", true);
 ```
 
 <br><br>
