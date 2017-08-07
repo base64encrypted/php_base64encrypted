@@ -16,7 +16,7 @@ if($yy){$a=substr_replace($a,substr(hash("md4",$u[1].$a,true),self::Seed(10,$u[0
 $l=self::Unorder(self::$clef,self::Hashich($u[1].substr($b,0,58),64,true));
 $n=self::Hashich($u[1].$mda);$j=self::Hashich($n);$na=self::Hashich($j);
 $s=$c-$c%3;$t=$g="";
-for($na=$na,$i=0;$i<$s;$i+=3,$na++){
+for($i=0;$i<$s;$i+=3){
 $n=$h=(($n<<5)-$n)%2147483647;$g=(ord($a{$i}^chr($h))<<16);
 $n=$h=(($n<<5)-$n)%2147483647;$g+=(ord($a{$i+1}^chr($h))<<8);
 $n=$h=(($n<<5)-$n)%2147483647;$g+=(ord($a{$i+2}^chr($h)));
@@ -66,7 +66,7 @@ $l=self::Unorder($e,self::Hashich($u.substr($b,0,58),64,true));
 $n=self::Hashich($u.$mda);$j=self::Hashich($n);$na=self::Hashich($j);
 $f=0;
 while($c%4!==0){$a.="=";$c=strlen($a);$c=$c-4;$f++;}
-for($na=$na,$i=0;$i<$c;$i+=4,$na++){
+for($i=0;$i<$c;$i+=4){
 $ha=strpos($l,$a{$i});$iq=$l{$ha};$l{$ha}=$l{$na=$na++&63};$l{$na}=$iq;
 $hb=strpos($l,$a{$i+1});$iq=$l{$hb};$l{$hb}=$l{$na=$na++&63};$l{$na}=$iq;
 $hc=strpos($l,$a{$i+2});$iq=$l{$hc};$l{$hc}=$l{$na=$na++&63};$l{$na}=$iq;
