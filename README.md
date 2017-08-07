@@ -5,8 +5,9 @@ Encrypt base64 via PHP. Short, fast, easy, practice and safe (-quantom aside ^_^
 
 ## Example: 
 
-`Base64_Encrypted::Crypter("Hello World ! My nickname is Boby. Have fun.", "My First Key", "My second Key", "My third Key");`
- 
+```php
+Base64_Encrypted::Crypter("Hello World ! My nickname is Boby. Have fun.", "My First Key", "My second Key", "My third Key");`
+``` 
  and to decrypt:
  
 > Base64_Encrypted::Decrypter( "0Cir0od46bIymT5d1KurUV8bQenWyz5aX1Kd0SV/m6y3ZeptXzsEWpikx0jHUd/cdgv", "My First Key", "My second Key", "My third Key");
