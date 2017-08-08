@@ -10,20 +10,20 @@ In this case take care to adapt the regex accordingly (see bold line).
 private static $clef="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
 public static function Crypter($a,$b,$mda,$mdb,$yy=false,$xx=true){
 if($a==""||$b==""||$mda==""||$mdb==""||!is_bool($yy)||!is_bool($xx))return $a;
-$u=$xx?self::Uranc($b,$mda):array("","");
+$u=$xx?self::Uranc($b,$mdb):array("","");
 $c=strlen($a);
 if($yy){$a=substr_replace($a,substr(hash("md4",$u[1].$a,true),self::Seed(10,$u[0].$mdb),6),self::Seed($c,$u[1].$mdb),0);$c+=6;}
 $l=self::Unorder(self::$clef,self::Hashich($u[1].substr($b,0,58),64,true));
 $n=self::Hashich($u[1].$mda);$j=self::Hashich($n);$na=self::Hashich($j);
 $s=$c-$c%3;$t=$g="";
 for($i=0;$i<$s;$i+=3){
-$n=$h=(($n<<5)-$n)%2147483647;$g=(ord($a{$i}^chr($h))<<16);
-$n=$h=(($n<<5)-$n)%2147483647;$g+=(ord($a{$i+1}^chr($h))<<8);
-$n=$h=(($n<<5)-$n)%2147483647;$g+=(ord($a{$i+2}^chr($h)));
-$j=$h=(($j<<5)-$j)%2147483647;$ha=(($g>>18)+$h)&63;
-$j=$h=(($j<<5)-$j)%2147483647;$hb=(($g>>12)+$h)&63;
-$j=$h=(($j<<5)-$j)%2147483647;$hc=(($g>>6)+$h)&63;
-$j=$h=(($j<<5)-$j)%2147483647;$hd=($g+$h)&63;
+$n=(($n<<5)-$n)%2147483647;$g=(ord($a{$i}^chr($n))<<16);
+$n=(($n<<5)-$n)%2147483647;$g+=(ord($a{$i+1}^chr($n))<<8);
+$n=(($n<<5)-$n)%2147483647;$g+=(ord($a{$i+2}^chr($n)));
+$j=(($j<<5)-$j)%2147483647;$ha=(($g>>18)+$j)&63;
+$j=(($j<<5)-$j)%2147483647;$hb=(($g>>12)+$j)&63;
+$j=(($j<<5)-$j)%2147483647;$hc=(($g>>6)+$j)&63;
+$j=(($j<<5)-$j)%2147483647;$hd=($g+$j)&63;
 $t.=$l{$ha};$iq=$l{$ha};$l{$ha}=$l{$na=$na++&63};$l{$na}=$iq;
 $t.=$l{$hb};$iq=$l{$hb};$l{$hb}=$l{$na=$na++&63};$l{$na}=$iq;
 $t.=$l{$hc};$iq=$l{$hc};$l{$hc}=$l{$na=$na++&63};$l{$na}=$iq;
@@ -31,15 +31,15 @@ $t.=$l{$hd};$iq=$l{$hd};$l{$hd}=$l{$na=$na++&63};$l{$na}=$iq;}
 switch($c-$s){
 case 1:
 $g=(ord($a{$i}^chr(($n<<5)-$n))<<16);
-$j=$h=(($j<<5)-$j)%2147483647;$he=(($g>>18)+$h)&63;
+$j=(($j<<5)-$j)%2147483647;$he=(($g>>18)+$j)&63;
 $t.=$l{$he};$iq=$l{$he};$l{$he}=$l{$na=$na++&63};$l{$na}=$iq;
 $t.=$l{(($g>>12)+(($j<<5)-$j))&63};
 break;
 case 2:
-$n=$h=(($n<<5)-$n)%2147483647;$g=(ord($a{$i}^chr($h))<<16);
+$n=(($n<<5)-$n)%2147483647;$g=(ord($a{$i}^chr($n))<<16);
 $g+=(ord($a{$i+1}^chr(($n<<5)-$n))<<8);
-$j=$h=(($j<<5)-$j)%2147483647;$he=(($g>>18)+$h)&63;
-$j=$h=(($j<<5)-$j)%2147483647;$hf=(($g>>12)+$h)&63;
+$j=(($j<<5)-$j)%2147483647;$he=(($g>>18)+$j)&63;
+$j=(($j<<5)-$j)%2147483647;$hf=(($g>>12)+$j)&63;
 $t.=$l{$he};$iq=$l{$he};$l{$he}=$l{$na=$na++&63};$l{$na}=$iq;
 $t.=$l{$hf};$iq=$l{$hf};$l{$hf}=$l{$na=$na++&63};$l{$na}=$iq;
 $t.=$l{(($g>>6)+(($j<<5)-$j))&63};
@@ -60,7 +60,7 @@ $mm=self::Seed($c,$c.$mdb);
 $uu=substr($a,$mm,8);
 $pr=substr($a,-($c-$mm));
 $a=substr($a,0,$mm).(strlen($pr)==$c+8?"":$pr);
-$u=Base64_Encrypted::Decrypter($uu,$b,$mda," ",false,false);}
+$u=Base64_Encrypted::Decrypter($uu,$b,$mdb," ",false,false);}
 $e=self::$clef;
 $l=self::Unorder($e,self::Hashich($u.substr($b,0,58),64,true));
 $n=self::Hashich($u.$mda);$j=self::Hashich($n);$na=self::Hashich($j);
@@ -71,26 +71,26 @@ $ha=strpos($l,$a{$i});$iq=$l{$ha};$l{$ha}=$l{$na=$na++&63};$l{$na}=$iq;
 $hb=strpos($l,$a{$i+1});$iq=$l{$hb};$l{$hb}=$l{$na=$na++&63};$l{$na}=$iq;
 $hc=strpos($l,$a{$i+2});$iq=$l{$hc};$l{$hc}=$l{$na=$na++&63};$l{$na}=$iq;
 $hd=strpos($l,$a{$i+3});$iq=$l{$hd};$l{$hd}=$l{$na=$na++&63};$l{$na}=$iq;
-$j=$h=(($j<<5)-$j)%2147483647;$g=strpos($e,$e{($ha-$h)&63})<<18;
-$j=$h=(($j<<5)-$j)%2147483647;$g+=strpos($e,$e{($hb-$h)&63})<<12;
-$j=$h=(($j<<5)-$j)%2147483647;$g+=strpos($e,$e{($hc-$h)&63})<<6;
-$j=$h=(($j<<5)-$j)%2147483647;$g+=strpos($e,$e{($hd-$h)&63});
-$n=$h=(($n<<5)-$n)%2147483647;$da.=(chr($g>>16)^chr($h));
-$n=$h=(($n<<5)-$n)%2147483647;$da.=(chr($g>>8)^chr($h));
-$n=$h=(($n<<5)-$n)%2147483647;$da.=(chr($g)^chr($h));}
+$j=(($j<<5)-$j)%2147483647;$g=strpos($e,$e{($ha-$j)&63})<<18;
+$j=(($j<<5)-$j)%2147483647;$g+=strpos($e,$e{($hb-$j)&63})<<12;
+$j=(($j<<5)-$j)%2147483647;$g+=strpos($e,$e{($hc-$j)&63})<<6;
+$j=(($j<<5)-$j)%2147483647;$g+=strpos($e,$e{($hd-$j)&63});
+$n=(($n<<5)-$n)%2147483647;$da.=(chr($g>>16)^chr($n));
+$n=(($n<<5)-$n)%2147483647;$da.=(chr($g>>8)^chr($n));
+$n=(($n<<5)-$n)%2147483647;$da.=(chr($g)^chr($n));}
 switch($f){
 case 1:
 $he=strpos($l,$a{$i});$iq=$l{$he};$l{$he}=$l{$na=$na++&63};$l{$na}=$iq;
 $hf=strpos($l,$a{$i+1});$iq=$l{$hf&63};$l{$hf&63}=$l{$na=$na++&63};$l{$na}=$iq;
-$j=$h=(($j<<5)-$j)%2147483647;$g=strpos($e,$e{($he-$h)&63})<<18;
-$j=$h=(($j<<5)-$j)%2147483647;$g+=strpos($e,$e{($hf-$h)&63})<<12;
+$j=(($j<<5)-$j)%2147483647;$g=strpos($e,$e{($he-$j)&63})<<18;
+$j=(($j<<5)-$j)%2147483647;$g+=strpos($e,$e{($hf-$j)&63})<<12;
 $g+=strpos($e,$e{(strpos($l,$a{$i+2})-(($j<<5)-$j))&63})<<6;
-$n=$h=(($n<<5)-$n)%2147483647;$da.=(chr($g>>16)^chr($h));
+$n=(($n<<5)-$n)%2147483647;$da.=(chr($g>>16)^chr($n));
 $da.=(chr($g>>8)^chr(($n<<5)-$n));
 break;
 case 2:
 $he=strpos($l,$a{$i});$iq=$l{$he};$l{$he}=$l{$na=$na++&63};$l{$na}=$iq;
-$j=$h=(($j<<5)-$j)%2147483647;$g=(strpos($e,$e{($he-$h)&63})<<18);
+$j=(($j<<5)-$j)%2147483647;$g=(strpos($e,$e{($he-$j)&63})<<18);
 $g+=(strpos($e,$e{(strpos($l,$a{$i+1})-(($j<<5)-$j))&63})<<12);
 $da.=(chr($g>>16)^chr(($n<<5)-$n));
 break;}
@@ -101,9 +101,9 @@ $pr=substr($da,-($c-$mm));
 $a=substr($da,0,$mm).(strlen($pr)==$c+6?"":$pr);
 $da=substr(hash("md4",$u.$a,true),self::Seed(10,$uu.$mdb),6)!=substr($da,$mm,6)?die("Corrupted data !"):$a;}
 return $da;}
-private static function Uranc($b,$mda){
+private static function Uranc($b,$mdb){
 $u=self::Hashich("",6,true,true);
-return array(Base64_Encrypted::Crypter($u,$b,$mda," ",false,false),$u);}
+return array(Base64_Encrypted::Crypter($u,$b,$mdb," ",false,false),$u);}
 private static function Hashich($b,$e=0,$y=false,$z=false){
 $b=(string)$b;$a=2166136261;$p="";$l=strlen($b);$e=$y?$e:$l;
 for($ii=$i=0;$i<$e;$i++,$ii++){$a^=$z?mt_rand(0,255):ord($b{$ii});$a+=(($a<<1)+($a<<4)+($a<<7)+($a<<8)+($a<<24))%2147483647;if($y){$p.=chr((int)$a);if($ii>=$l-1)$ii=-1;}}
