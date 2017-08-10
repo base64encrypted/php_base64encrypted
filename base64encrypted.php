@@ -9,7 +9,7 @@ In this case take care to adapt the regex accordingly (see bold line).
 */
 private static $clef="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
 public static function Crypter($a,$b,$mda,$mdb,$yy=false,$xx=true){
-if($a==""||$b==""||$mda==""||$mdb==""||!is_bool($yy)||!is_bool($xx))return $a;
+if($a==""||$b==""||$mda==""||$mdb==""||!is_bool($yy)||!is_bool($xx))die("Wrong input!");
 $u=$xx?self::Uranc($b,$mdb):array("","");
 $c=strlen($a);
 if($yy){$a=substr_replace($a,substr(hash("md4",$u[1].$a,true),self::Seed(10,$u[0].$mdb),6),self::Seed($c,$u[1].$mdb),0);$c+=6;}
@@ -51,7 +51,7 @@ public static function Decrypter($a,$b,$mda,$mdb,$yy=false,$xx=true){
 For URL encryption, change the regex with this one:
 if(!preg_match("/^[A-z0-9_-]+$/",$a)||$b==""||$mda==""||$mdb==""||!is_bool($yy)||!is_bool($xx))return $a;
 */
-if(!preg_match("/^[A-z0-9\/+]+$/",$a)||$b==""||$mda==""||$mdb==""||!is_bool($yy)||!is_bool($xx))return $a;
+if(!preg_match("/^[A-z0-9\/+]+$/",$a)||$b==""||$mda==""||$mdb==""||!is_bool($yy)||!is_bool($xx))die("Wrong input!");
 $c=strlen($a);
 $da=$g=$u="";
 if($xx){
@@ -98,7 +98,7 @@ $c=strlen($da)-6;
 $mm=self::Seed($c,$u.$mdb);
 $pr=substr($da,-($c-$mm));
 $a=substr($da,0,$mm).(strlen($pr)==$c+6?"":$pr);
-$da=substr(hash("md4",$u.$a,true),self::Seed(10,$uu.$mdb),6)!=substr($da,$mm,6)?die("Corrupted data !"):$a;}
+$da=substr(hash("md4",$u.$a,true),self::Seed(10,$uu.$mdb),6)!=substr($da,$mm,6)?die("Corrupted data!"):$a;}
 return $da;}
 private static function Uranc($b,$mdb){
 $u=self::Hashich("",6,true,true);
