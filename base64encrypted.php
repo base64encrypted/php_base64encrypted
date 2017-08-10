@@ -46,7 +46,7 @@ return substr_replace($t,$u[0],self::Seed($c,$c.$mdb),0);}
 public static function Decrypter($a,$b,$mda,$mdb,$yy=false,$xx=true){
 /*
 For URL encryption, change the regex with this one:
-if(!preg_match("/^[A-z0-9_-]+$/",$a)||$b==""||$mda==""||$mdb==""||!is_bool($yy)||!is_bool($xx))return $a;
+if(!preg_match("/^[A-z0-9_-]+$/",$a)||$b==""||$mda==""||$mdb==""||!is_bool($yy)||!is_bool($xx))die("Wrong input!");
 */
 if(!preg_match("/^[A-z0-9\/+]+$/",$a)||$b==""||$mda==""||$mdb==""||!is_bool($yy)||!is_bool($xx))die("Wrong input!");
 $c=strlen($a);
