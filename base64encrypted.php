@@ -61,8 +61,7 @@ $uu=substr($a,$mm,8);
 $pr=substr($a,-($c-$mm));
 $a=substr($a,0,$mm).(strlen($pr)==$c+8?"":$pr);
 $u=Base64_Encrypted::Decrypter($uu,$b,$mdb," ",false,false);}
-$e=self::$clef;
-$l=self::Unorder($e,self::Hashich($u.substr($b,0,58),64,true));
+$l=self::Unorder(self::$clef,self::Hashich($u.substr($b,0,58),64,true));
 $n=self::Hashich($u.$mda);$j=self::Hashich($n);$na=self::Hashich($j);
 $f=0;
 while($c%4!==0){$a.="=";$c=strlen($a);$c=$c-4;$f++;}
@@ -71,10 +70,10 @@ $ha=strpos($l,$a{$i});$iq=$l{$ha};$l{$ha}=$l{$na=$na++&63};$l{$na}=$iq;
 $hb=strpos($l,$a{$i+1});$iq=$l{$hb};$l{$hb}=$l{$na=$na++&63};$l{$na}=$iq;
 $hc=strpos($l,$a{$i+2});$iq=$l{$hc};$l{$hc}=$l{$na=$na++&63};$l{$na}=$iq;
 $hd=strpos($l,$a{$i+3});$iq=$l{$hd};$l{$hd}=$l{$na=$na++&63};$l{$na}=$iq;
-$j=(($j<<5)-$j)%2147483647;$g=strpos($e,$e{($ha-$j)&63})<<18;
-$j=(($j<<5)-$j)%2147483647;$g+=strpos($e,$e{($hb-$j)&63})<<12;
-$j=(($j<<5)-$j)%2147483647;$g+=strpos($e,$e{($hc-$j)&63})<<6;
-$j=(($j<<5)-$j)%2147483647;$g+=strpos($e,$e{($hd-$j)&63});
+$j=(($j<<5)-$j)%2147483647;$g=(($ha-$j)&63)<<18;
+$j=(($j<<5)-$j)%2147483647;$g+=(($hb-$j)&63)<<12;
+$j=(($j<<5)-$j)%2147483647;$g+=(($hc-$j)&63)<<6;
+$j=(($j<<5)-$j)%2147483647;$g+=($hd-$j)&63;
 $n=(($n<<5)-$n)%2147483647;$da.=chr($g>>16)^chr($n);
 $n=(($n<<5)-$n)%2147483647;$da.=chr($g>>8)^chr($n);
 $n=(($n<<5)-$n)%2147483647;$da.=chr($g)^chr($n);}
@@ -82,16 +81,16 @@ switch($f){
 case 1:
 $he=strpos($l,$a{$i});$iq=$l{$he};$l{$he}=$l{$na=$na++&63};$l{$na}=$iq;
 $hf=strpos($l,$a{$i+1});$iq=$l{$hf&63};$l{$hf&63}=$l{$na=$na++&63};$l{$na}=$iq;
-$j=(($j<<5)-$j)%2147483647;$g=strpos($e,$e{($he-$j)&63})<<18;
-$j=(($j<<5)-$j)%2147483647;$g+=strpos($e,$e{($hf-$j)&63})<<12;
-$g+=strpos($e,$e{(strpos($l,$a{$i+2})-(($j<<5)-$j)%2147483647)&63})<<6;
+$j=(($j<<5)-$j)%2147483647;$g=(($he-$j)&63)<<18;
+$j=(($j<<5)-$j)%2147483647;$g+=(($hf-$j)&63)<<12;
+$g+=((strpos($l,$a{$i+2})-(($j<<5)-$j)%2147483647)&63)<<6;
 $n=(($n<<5)-$n)%2147483647;$da.=chr($g>>16)^chr($n);
 $da.=chr($g>>8)^chr((($n<<5)-$n)%2147483647);
 break;
 case 2:
 $he=strpos($l,$a{$i});$iq=$l{$he};$l{$he}=$l{$na=$na++&63};$l{$na}=$iq;
-$j=(($j<<5)-$j)%2147483647;$g=strpos($e,$e{($he-$j)&63})<<18;
-$g+=strpos($e,$e{(strpos($l,$a{$i+1})-(($j<<5)-$j)%2147483647)&63})<<12;
+$j=(($j<<5)-$j)%2147483647;$g=(($he-$j)&63)<<18;
+$g+=((strpos($l,$a{$i+1})-(($j<<5)-$j)%2147483647)&63)<<12;
 $da.=chr($g>>16)^chr((($n<<5)-$n)%2147483647);
 break;}
 if($yy){
