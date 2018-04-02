@@ -16,7 +16,7 @@ Base64_Encrypted::Decrypter( "eoDqDtAimbUCQqHBTvH11fjj", "My First Key", "My sec
 
 <br><br>
  
- To check the integrity of the encrypted data, add true to the fifth parameter.
+ To check the integrity of the encrypted data, add true to the fifth parameter (return false if wrong data).
  
 ## Example:
  
@@ -31,7 +31,7 @@ Base64_Encrypted::Decrypter( "hoqk3NIv02X1WcamjOGKOoKXIdEWoWnC", "My First Key",
 
 <br><br>  
 
-To encryt data in URL, add true to the sixth parameter (return false if wrong data).
+To encryt data in URL, add true to the sixth parameter.
 
 ## Example:
 
