@@ -35,13 +35,13 @@ To encryt data in URL, add true to the sixth parameter.
 
 ## Example:
 
-```
-phpBase64_Encrypted::Crypter("Hello World!", "My First Key", "My second Key", "My third Key", true, true);
+```php
+Base64_Encrypted::Crypter("Hello World!", "My First Key", "My second Key", "My third Key", true, true);
 ```
 and to decrypt:
 
-```
-phpBase64_Encrypted::Decrypter( "u5lwZ_Mvi5-Ws36FF8FAV_HecU08p5Hv", "My First Key", "My second Key", "My third Key", true, true);
+```php
+Base64_Encrypted::Decrypter( "u5lwZ_Mvi5-Ws36FF8FAV_HecU08p5Hv", "My First Key", "My second Key", "My third Key", true, true);
 ```
 
 
