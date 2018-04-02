@@ -31,7 +31,7 @@ Base64_Encrypted::Decrypter( "hoqk3NIv02X1WcamjOGKOoKXIdEWoWnC", "My First Key",
 
 <br><br>  
 
-To encryt data in URL, add true to the sixth parameter.
+To encryt data in URL, add true to the sixth parameter (return false if wrong data).
 
 ## Example:
 
