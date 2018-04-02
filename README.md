@@ -1,5 +1,5 @@
 # php_base64encrypted
-Encrypt base64 via PHP. Short, fast, easy, practice and safe.
+Encrypt base64 via PHP without mcrypt extension nor openssl. Short, fast, easy, practice and safe.
 
 <br><br>
 
