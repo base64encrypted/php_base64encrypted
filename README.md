@@ -1,17 +1,17 @@
 # php_base64encrypted
-Encrypt base64 via PHP without mcrypt extension nor openssl.This algorithm is written in pure PHP which makes it compatible with older versions of php. Short, fast, easy, practice and safe.
+Encrypt base64 via PHP without mcrypt extension nor openssl. This algorithm is written in pure PHP which makes it compatible with old versions of PHP. Short, fast, easy, practice and safe.
 
 <br><br>
 
 ## Example: 
 
 ```php
-Base64_Encrypted::Crypter("Hello World!", "My First Key", "My second Key", "My third Key");`
+Base64_Encrypted::Crypter("Hello World!", "My First Key", "My second Key", "My third Key");
 ``` 
  and to decrypt:
 
 ```php
-Base64_Encrypted::Decrypter( "eoDqDtAimbUCQqHBTvH11fjj", "My First Key", "My second Key", "My third Key");
+Base64_Encrypted::Decrypter( "8tc0cq5+9y0xlvqrLA6wTZxQ", "My First Key", "My second Key", "My third Key");
 ```
 
 <br><br>
@@ -26,7 +26,7 @@ Base64_Encrypted::Crypter("Hello World!", "My First Key", "My second Key", "My t
 and to decrypt:
 
 ```php
-Base64_Encrypted::Decrypter( "hoqk3NIv02X1WcamjOGKOoKXIdEWoWnC", "My First Key", "My second Key", "My third Key", true);
+Base64_Encrypted::Decrypter( "6Xri6jEfUGCYeEKez/fpqnrhmNv3cOCu", "My First Key", "My second Key", "My third Key", true);
 ```
 
 <br><br>  
@@ -41,7 +41,7 @@ Base64_Encrypted::Crypter("Hello World!", "My First Key", "My second Key", "My t
 and to decrypt:
 
 ```php
-Base64_Encrypted::Decrypter( "u5lwZ_Mvi5-Ws36FF8FAV_HecU08p5Hv", "My First Key", "My second Key", "My third Key", true, true);
+Base64_Encrypted::Decrypter( "QOMqIere_v-8auRoAjcD4X7NcbmsGutf", "My First Key", "My second Key", "My third Key", true, true);
 ```
 
 
