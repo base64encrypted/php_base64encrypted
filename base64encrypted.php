@@ -9,7 +9,7 @@ if($xx){$u=self::Hashich("",6,true,true);$u=array(Base64_Encrypted::Crypter($u,$
 $l=self::Unorder($ww?strtr(self::$clef,"+/","_-"):self::$clef,self::Hashich($u[1].substr($b,0,58),64,true));
 $j=$jz=self::Hashich($u[1].$mda);$na=$js=self::Hashich($u[1].$j);
 $c=strlen($a);
-self::$val=-2080374784;
+self::$val=2080374783;
 $s=$c-$c%3;$t=$g="";
 for($i=0;$i<$s;$i+=3){
 if($yy)$js=((($js<<5)-$js)-(ord($a{$i})+ord($a{$i+1})+ord($a{$i+2})))%2080374784;
@@ -63,7 +63,7 @@ $f=0;
 $l=self::Unorder($ww?strtr(self::$clef,"+/","_-"):self::$clef,self::Hashich($u.substr($b,0,58),64,true));
 $j=$jz=self::Hashich($u.$mda);$na=$js=self::Hashich($u.$j);
 while($c%4!==0){$a.="=";$c=strlen($a);$c=$c-4;$f++;}
-self::$val=-2080374784;
+self::$val=2080374783;
 for($i=0;$i<$c;$i+=4){
 $ha=strpos($l,$a{$i});$iq=$l{$ha};$l{$ha}=$l{$na=$na++&63};$l{$na}=$iq;
 $hb=strpos($l,$a{$i+1});$iq=$l{$hb};$l{$hb}=$l{$na=$na++&63};$l{$na}=$iq;
