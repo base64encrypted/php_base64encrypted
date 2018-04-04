@@ -1,7 +1,7 @@
 <?php
 class Base64_Encrypted{
 private static $clef="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
-private static $val=-2080374784;
+private static $val=0;
 public static function Crypter($a,$b,$mda,$mdb,$yy=false,$ww=false,$xx=true){
 if($a==""||$b==""||$mda==""||$mdb==""||!is_bool($yy)||!is_bool($ww)||!is_bool($xx)){header("Location: https://www.jadorre.com");die("go");}
 $u=array("","");
@@ -9,7 +9,7 @@ if($xx){$u=self::Hashich("",6,true,true);$u=array(Base64_Encrypted::Crypter($u,$
 $l=self::Unorder($ww?strtr(self::$clef,"+/","_-"):self::$clef,self::Hashich($u[1].substr($b,0,58),64,true));
 $j=$jz=self::Hashich($u[1].$mda);$na=$js=self::Hashich($u[1].$j);
 $c=strlen($a);
-self::$val=2080374783;
+self::$val=-67108865;
 $s=$c-$c%3;$t=$g="";
 for($i=0;$i<$s;$i+=3){
 if($yy)$js=((($js<<5)-$js)-(ord($a{$i})+ord($a{$i+1})+ord($a{$i+2})))%2080374784;
@@ -63,7 +63,7 @@ $f=0;
 $l=self::Unorder($ww?strtr(self::$clef,"+/","_-"):self::$clef,self::Hashich($u.substr($b,0,58),64,true));
 $j=$jz=self::Hashich($u.$mda);$na=$js=self::Hashich($u.$j);
 while($c%4!==0){$a.="=";$c=strlen($a);$c=$c-4;$f++;}
-self::$val=2080374783;
+self::$val=-67108865;
 for($i=0;$i<$c;$i+=4){
 $ha=strpos($l,$a{$i});$iq=$l{$ha};$l{$ha}=$l{$na=$na++&63};$l{$na}=$iq;
 $hb=strpos($l,$a{$i+1});$iq=$l{$hb};$l{$hb}=$l{$na=$na++&63};$l{$na}=$iq;
@@ -98,7 +98,7 @@ for($i=4;$i<7;$i++){$a.=chr($js=((int)substr($js<<5,0,-1)-($js+$i))%2080374784);
 return $a;}
 private static function Chaining($j){
 $j=(((int)substr($j<<5,0,-1)-$j)-(self::$val+=1))%2080374784;
-self::$val%=2080374784;
+self::$val%=67108866;
 return $j;}
 private static function Hashich($b,$e=0,$y=false,$z=false){
 $b=(string)$b;$a=0;$p="";$l=strlen($b);$e=$y?$e:$l;
