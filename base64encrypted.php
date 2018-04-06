@@ -3,7 +3,7 @@ class Base64_Encrypted{
 private static $clef="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
 private static $val=0;
 public static function Crypter($a,$b,$mda,$mdb,$yy=false,$ww=false,$xx=true){
-if($a==""||$b==""||$mda==""||$mdb==""||!is_bool($yy)||!is_bool($ww)||!is_bool($xx)){header("Location: https://www.jadorre.com");die("go");}
+if($a==""||$b==""||$mda==""||$mdb==""||!is_bool($yy)||!is_bool($ww)||!is_bool($xx))die("Error");
 $u=array("","");
 if($xx){$u=self::Hashich("",6,true,true);$u=array(Base64_Encrypted::Crypter($u,$b,$mdb," ",false,$ww,false),$u);}
 $l=self::Unorder($ww?strtr(self::$clef,"+/","_-"):self::$clef,self::Hashich($u[1].substr($b,0,58),64,true));
@@ -43,7 +43,7 @@ $c=strlen($t);
 if($yy){$ir=Base64_Encrypted::Crypter(self::Loop($js,$jz),$b,$u[1].$mdb," ",false,$ww,false);$t=substr_replace($t,$ir,self::Seed($c,$u[0].$mdb),0);$c+=8;}
 return substr_replace($t,$u[0],self::Seed($c,$c.$mdb),0);}
 public static function Decrypter($a,$b,$mda,$mdb,$yy=false,$ww=false,$xx=true){
-if(!($ww?preg_match("/^[A-Za-z0-9_-]+$/",$a):preg_match("/^[A-Za-z0-9\/+]+$/",$a))||$b==""||$mda==""||$mdb==""||!is_bool($yy)||!is_bool($xx)){header("Location: https://www.jadorre.com");die("go");}
+if(!($ww?preg_match("/^[A-Za-z0-9_-]+$/",$a):preg_match("/^[A-Za-z0-9\/+]+$/",$a))||$b==""||$mda==""||$mdb==""||!is_bool($yy)||!is_bool($xx))die("Error");
 $c=strlen($a);
 $da=$g=$u=$di=$uu="";
 if($xx){
