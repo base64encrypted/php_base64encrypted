@@ -92,9 +92,7 @@ break;}
 return $yy?(self::Loop($js,$jz)!=$di?false:$da):$da;}
 private static function Loop($js,$jz){
 $a="";
-for($i=1;$i<4;$i++){$a.=chr($js=((int)substr($js<<5,0,-1)-($js+$i))%2080374784);}
-$js=($js+$jz)%2080374784;
-for($i=4;$i<7;$i++){$a.=chr($js=((int)substr($js<<5,0,-1)-($js+$i))%2080374784);}
+for($i=1;$i<7;$i++){$a.=chr($js=((int)substr($js<<5,0,-1)-($js+($i==2||$i==5?$jz:0)+$i))%2080374784);if($i==3)$js=($js+$jz)%2080374784;}
 return $a;}
 private static function Chaining($j){
 $j=(((int)substr($j<<5,0,-1)-$j)-(self::$val+=1))%2080374784;
