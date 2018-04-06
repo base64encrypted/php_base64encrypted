@@ -5,11 +5,11 @@ private static $val=0;
 public static function Crypter($a,$b,$mda,$mdb,$yy=false,$ww=false,$xx=true){
 if($a==""||$b==""||$mda==""||$mdb==""||!is_bool($yy)||!is_bool($ww)||!is_bool($xx))die("Error");
 $u=array("","");
-if($xx){$u=self::Hashich("",6,true,true);$u=array(Base64_Encrypted::Crypter($u,$b,$mdb," ",false,$ww,false),$u);}
+if($xx){$u=self::Loop(0,mt_rand(0,281856970),true);$u=array(Base64_Encrypted::Crypter($u,$b,$mdb," ",false,$ww,false),$u);}
 $l=self::Unorder($ww?strtr(self::$clef,"+/","_-"):self::$clef,self::Hashich($u[1].substr($b,0,58),64,true));
 $j=$jz=self::Hashich($u[1].$mda);$na=$js=self::Hashich($u[1].$j);
 $c=strlen($a);
-self::$val=-67108865;
+self::$val=-67108864;
 $s=$c-$c%3;$t=$g="";
 for($i=0;$i<$s;$i+=3){
 if($yy)$js=((($js<<5)-$js)-(ord($a{$i})+ord($a{$i+1})+ord($a{$i+2})))%2080374784;
@@ -63,7 +63,7 @@ $f=0;
 $l=self::Unorder($ww?strtr(self::$clef,"+/","_-"):self::$clef,self::Hashich($u.substr($b,0,58),64,true));
 $j=$jz=self::Hashich($u.$mda);$na=$js=self::Hashich($u.$j);
 while($c%4!==0){$a.="=";$c=strlen($a);$c=$c-4;$f++;}
-self::$val=-67108865;
+self::$val=-67108864;
 for($i=0;$i<$c;$i+=4){
 $ha=strpos($l,$a{$i});$iq=$l{$ha};$l{$ha}=$l{$na=$na++&63};$l{$na}=$iq;
 $hb=strpos($l,$a{$i+1});$iq=$l{$hb};$l{$hb}=$l{$na=$na++&63};$l{$na}=$iq;
@@ -90,17 +90,18 @@ if($yy)$js=((($js<<5)-$js)-ord($e{0}))%2080374784;
 $da.=$e;
 break;}
 return $yy?(self::Loop($js,$jz)!=$di?false:$da):$da;}
-private static function Loop($js,$jz){
+private static function Loop($js,$jz,$z=false){
 $a="";
-for($i=1;$i<7;$i++){$a.=chr($js=((int)substr($js<<5,0,-1)-($js+($i==2||$i==5?$jz:0)+$i))%2080374784);if($i==3)$js=($js+$jz)%2080374784;}
+$jz%=281857220;
+for($i=1;$i<7;$i++){$a.=chr($js=(((int)substr($js<<5,0,-1)-$js)-(($z?mt_rand(0,255):$i)+($i==2||$i==5?$jz:0)))%2080374784);if($i==3)$js=($js+$jz)%2080374784;}
 return $a;}
 private static function Chaining($j){
 $j=(((int)substr($j<<5,0,-1)-$j)-(self::$val+=1))%2080374784;
-self::$val%=67108866;
+self::$val%=67108865;
 return $j;}
-private static function Hashich($b,$e=0,$y=false,$z=false){
+private static function Hashich($b,$e=0,$y=false){
 $b=(string)$b;$a=0;$p="";$l=strlen($b);$e=$y?$e:$l;
-for($ii=$i=0;$i<$e;$i++,$ii++){$a=(((int)substr($a<<5,0,-1)-$a)-($z?mt_rand(0,255):ord($b{$ii})))%2080374784;if($y){$p.=chr((int)$a);if($ii>=$l-1)$ii=-1;}}
+for($ii=$i=0;$i<$e;$i++,$ii++){$a=(((int)substr($a<<5,0,-1)-$a)-ord($b{$ii}))%2080374784;if($y){$p.=chr((int)$a);if($ii>=$l-1)$ii=-1;}}
 return $y?$p:(int)$a;}
 private static function Unorder($x,$b,$c=64){
 $w=0;$y=strlen($b);$t=$b;
