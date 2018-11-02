@@ -6,12 +6,12 @@ Encrypt base64 via PHP without mcrypt extension nor openssl. This algorithm is w
 ## Example: 
 
 ```php
-Base64_Encrypted::Crypter("Hello World!", "My First Key", "My second Key", "My third Key");
+echo Base64_Encrypted::Crypter("Hello World!", "My First Key", "My second Key", "My third Key");
 ``` 
  and to decrypt:
 
 ```php
-Base64_Encrypted::Decrypter( "TM+cUvooYD/oMQBq3f720x83", "My First Key", "My second Key", "My third Key");
+echo Base64_Encrypted::Decrypter("wbtJy6ubwFX4SHTyoTRURI3z", "My First Key", "My second Key", "My third Key");
 ```
 
 <br><br>
@@ -21,27 +21,27 @@ Base64_Encrypted::Decrypter( "TM+cUvooYD/oMQBq3f720x83", "My First Key", "My sec
 ## Example:
  
 ```php
-Base64_Encrypted::Crypter("Hello World!", "My First Key", "My second Key", "My third Key", true);
+echo Base64_Encrypted::Crypter("Hello World!", "My First Key", "My second Key", "My third Key", true);
 ```
 and to decrypt:
 
 ```php
-Base64_Encrypted::Decrypter( "Nu+nSpECYgjKhZtlgmsTfn9/ERKg8pkv", "My First Key", "My second Key", "My third Key", true);
+echo Base64_Encrypted::Decrypter("ZF2rFj5h0qCTTe8rL9L2ZnPQg+HuPow3", "My First Key", "My second Key", "My third Key", true);
 ```
 
-<br><br>  
+<br><br>  
 
 To encryt data in URL, add true to the sixth parameter.
 
 ## Example:
 
 ```php
-Base64_Encrypted::Crypter("Hello World!", "My First Key", "My second Key", "My third Key", true, true);
+echo Base64_Encrypted::Crypter("Hello World!", "My First Key", "My second Key", "My third Key", true, true);
 ```
 and to decrypt:
 
 ```php
-Base64_Encrypted::Decrypter( bPZATFVZ9Cl6t--DuHwx4xljdKhCb2ro", "My First Key", "My second Key", "My third Key", true, true);
+echo Base64_Encrypted::Decrypter("8zDQqX8yb7gRfuh62h-oiWW-zwhHe_Do", "My First Key", "My second Key", "My third Key", true, true);
 ```
 
 
