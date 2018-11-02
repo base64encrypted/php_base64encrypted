@@ -3,9 +3,9 @@ class Base64_Encrypted{
 private static $clef="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
 private static $val=0;
 public static function Crypter($a,$b,$mda,$mdb,$yy=false,$ww=false,$xx=true){
-if($a==""||$b==""||$mda==""||$mdb==""||!is_bool($yy)||!is_bool($ww)||!is_bool($xx))die("Error");
+if($a==""||$b==""||$mda==""||$mdb==""||!is_bool($yy)||!is_bool($ww)||!is_bool($xx))die("error parameter");
 $u=array("","");
-if($xx){$u=self::Loop(0,mt_rand(0,281856970),true);$u=array(Base64_Encrypted::Crypter($u,$b,$mdb," ",false,$ww,false),$u);}
+if($xx){$u=function_exists("random_bytes")?random_bytes(6):(function_exists("openssl_random_pseudo_bytes")?openssl_random_pseudo_bytes(6):(function_exists("mcrypt_create_iv")?mcrypt_create_iv(6,MCRYPT_DEV_URANDOM):(@file_exists("/dev/urandom")?file_get_contents("/dev/urandom",NULL,NULL,mt_rand(0,100),6):die("No way to generate random bytes"))));$u=array(Base64_Encrypted::Crypter($u,$b,$mdb," ",false,$ww,false),$u);}
 $l=self::Unorder($ww?strtr(self::$clef,"+/","_-"):self::$clef,self::Hashich($u[1].substr($b,0,58),64,true));
 $j=$jz=self::Hashich($u[1].$mda);$na=$js=self::Hashich($u[1].$j);
 $c=strlen($a);
@@ -43,7 +43,8 @@ $c=strlen($t);
 if($yy){$ir=Base64_Encrypted::Crypter(self::Loop($js,$jz),$b,$u[1].$mdb," ",false,$ww,false);$t=substr_replace($t,$ir,self::Seed($c,$u[0].$mdb),0);$c+=8;}
 return substr_replace($t,$u[0],self::Seed($c,$c.$mdb),0);}
 public static function Decrypter($a,$b,$mda,$mdb,$yy=false,$ww=false,$xx=true){
-if(!($ww?preg_match("/^[A-Za-z0-9_-]+$/",$a):preg_match("/^[A-Za-z0-9\/+]+$/",$a))||$b==""||$mda==""||$mdb==""||!is_bool($yy)||!is_bool($xx))die("Error");
+if($b==""||$mda==""||$mdb==""||!is_bool($yy)||!is_bool($xx))die("error parameter");
+if(!($ww?preg_match("/^[A-Za-z0-9_-]+$/",$a):preg_match("/^[A-Za-z0-9\/+]+$/",$a))){if($yy)return false;else die("data error");}
 $c=strlen($a);
 $da=$g=$u=$di=$uu="";
 if($xx){$c-=8;$mm=self::Seed($c,$c.$mdb);$uu=substr($a,$mm,8);$u=Base64_Encrypted::Decrypter($uu,$b,$mdb," ",false,$ww,false);$pr=substr($a,-($c-$mm));$a=substr($a,0,$mm).(strlen($pr)==$c+8?"":$pr);}
@@ -79,9 +80,9 @@ if($yy)$js=self::norepeat($js,ord($e{0}));
 $da.=$e;
 break;}
 return $yy?(self::Loop($js,$jz)!=$di?false:$da):$da;}
-private static function Loop($js,$jz,$z=false){
+private static function Loop($js,$jz){
 $a="";$jz%=281857220;
-for($i=1;$i<7;$i++){$a.=chr($js=self::norepeat($js,($z?mt_rand(0,255):$i)+($i==2||$i==5?$jz:0)));if($i==3)$js=($js+$jz)%2080374784;}
+for($i=1;$i<7;$i++){$a.=chr($js=self::norepeat($js,$i+($i==2||$i==5?$jz:0)));if($i==3)$js=($js+$jz)%2080374784;}
 return $a;}
 private static function Chaining($j){
 $j=self::norepeat($j,self::$val+=1);
@@ -98,6 +99,6 @@ $w=0;$y=strlen($b);$t=$b;
 for($i=0;$i<$c;$i++){$w=($w+ord($x{$i})+ord($b{$i%$y}))%$c;$j=$x{$i};$x{$i}=$x{$w};$x{$w}=$j;}
 return $x;}
 private static function Seed($b,$c){
-return round(((self::Hashich($c)&2147483647)/2147483647.0)*$b);} 
+return round(((self::Hashich($c)&2147483647)/2147483647.0)*$b);}
 }
 ?>
