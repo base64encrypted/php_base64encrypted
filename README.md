@@ -1,5 +1,5 @@
 # php_base64encrypted
-Encrypt base64 via PHP without mcrypt extension nor openssl. This algorithm is written in pure PHP which makes it compatible with old versions of PHP. Short, fast, easy, practice and safe.
+Encrypt base64 via PHP. This is the first and the only at this time algorithm that encrypt natively base64. Short, fast, easy, practice and safe.
 
 <br><br>
 
@@ -31,7 +31,7 @@ echo Base64_Encrypted::Decrypter("ZF2rFj5h0qCTTe8rL9L2ZnPQg+HuPow3", "My First K
 
 <br><br>  
 
-To encryt data in URL, add true to the sixth parameter.
+To encrypt data in URL, add true to the sixth parameter.
 
 ## Example:
 
