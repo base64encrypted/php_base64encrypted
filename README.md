@@ -1,5 +1,5 @@
 # php_base64encrypted
-Encrypt base64 via PHP. This is the first and the only at this time algorithm that encrypt natively base64. Short, fast, easy, practice and safe.
+Encrypt base64 via PHP. This is the first and the only at this time algorithm that encrypt natively base64. Short, fast, easy, practice and safe (never breaked).
 
 <br><br>
 
