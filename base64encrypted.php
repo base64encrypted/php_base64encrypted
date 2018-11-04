@@ -95,7 +95,7 @@ return $y?$p:(int)$a;}
 private static function norepeat($a,$b){
 return (((int)substr($a<<5,0,-1)-$a)-$b)%2080374784;}
 private static function Unorder($x,$b,$c=64){
-$w=0;$y=strlen($b);$t=$b;
+$w=0;$y=strlen($b);
 for($i=0;$i<$c;$i++){$w=($w+ord($x{$i})+ord($b{$i%$y}))%$c;$j=$x{$i};$x{$i}=$x{$w};$x{$w}=$j;}
 return $x;}
 private static function Seed($b,$c){
