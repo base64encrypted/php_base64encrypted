@@ -1,5 +1,5 @@
 # php_base64encrypted
-Encrypt base64 via PHP. This is the first and the unique cryptographic algorithm at this time IN THE WORLD that encrypt natively base64. Short, fast, easy, practice and safe. With its three keys, it protects against brute force attacks and therefore, is quantum resistant.
+Encrypt base64 via PHP. This is the first and the unique cryptographic algorithm at this time IN THE WORLD that encrypt natively base64. With its three keys, it protects against brute force attacks and therefore, is quantum resistant. Short, fast, easy, practice and safe.
 
 Enjoy!
 
