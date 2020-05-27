@@ -13,7 +13,7 @@ echo Base64_Encrypted::Crypter("Hello World!", "My First Key", "My second Key", 
  and to decrypt:
 
 ```php
-echo Base64_Encrypted::Decrypter("yptI9z6vBaiu7Z3CY7pJGwk6", "My First Key", "My second Key", "My third Key");
+echo Base64_Encrypted::Decrypter("OUAN+QiXDQoGg5kHaD/HuA0V", "My First Key", "My second Key", "My third Key");
 ```
 
 <br><br>
@@ -28,7 +28,7 @@ echo Base64_Encrypted::Crypter("Hello World!", "My First Key", "My second Key", 
 and to decrypt:
 
 ```php
-echo Base64_Encrypted::Decrypter("mclbMCQk+MKBUmehyq/zzcF6KjBa9p6R", "My First Key", "My second Key", "My third Key", true);
+echo Base64_Encrypted::Decrypter("C5y7yH4fF+euSn0fKSuPayZw/iiXWOZE", "My First Key", "My second Key", "My third Key", true);
 ```
 
 <br><br>  
@@ -43,7 +43,7 @@ echo Base64_Encrypted::Crypter("Hello World!", "My First Key", "My second Key", 
 and to decrypt:
 
 ```php
-echo Base64_Encrypted::Decrypter("sWx2T-01SQU_44opUunzsmWNDP1a0ex7", "My First Key", "My second Key", "My third Key", true, true);
+echo Base64_Encrypted::Decrypter("tJwL81RKQ_vxErTsIgyicgoZEaS-sHqh", "My First Key", "My second Key", "My third Key", true, true);
 ```
 
 
