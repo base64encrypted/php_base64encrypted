@@ -1,9 +1,11 @@
 # php_base64encrypted
-Encrypt base64 via PHP. This is the first and the unique cryptographic algorithm at this time IN THE WORLD that encrypt natively base64. Short, fast, easy, practice and safe (<div class="text-green mb-2">quantum resistant</div>).
+Encrypt base64 via PHP. This is the first and the unique cryptographic algorithm at this time IN THE WORLD that encrypt natively base64. Short, fast, easy, practice and safe (quantum resistant).
 
 Enjoy!
 
 <br><br>
+
+
 
 ## Example: 
 
