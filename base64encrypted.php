@@ -142,7 +142,7 @@ $c=self::rot($b,30);
 $b=$a;$a=$t;}
 $aa=($aa+$a)&4294967295;$bb=($bb+$b)&4294967295;$cc=($cc+$c)&4294967295;$dd=($dd+$d)&4294967295;$ee=($ee+$e)&4294967295;}
 return sprintf("%08x%08x%08x%08x%08x",$aa,$bb,$cc,$dd,$ee);}
-function mb_strrev($str){
+private static function mb_strrev($str){
 $r='';
 for($i=mb_strlen($str);$i>=0;$i--){$r.=mb_substr($str,$i,1);}
 return $r;}
