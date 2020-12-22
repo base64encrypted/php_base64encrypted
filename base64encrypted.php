@@ -47,7 +47,7 @@ if($yy){$ir=Base64_Encrypted::Crypter(self::Loop_S($js,$jz),$b,$u[1].$mdb," ",fa
 return substr_replace($t,$u[0],self::Range_a($c,$c.$mdb,true),0);}
 public static function Decrypter($a,$b,$mda,$mdb,$yy=false,$ww=false,$xx=true){
 if($b==""||$mda==""||$mdb==""||!is_bool($yy)||!is_bool($ww)||!is_bool($xx))die("error parameter");
-if($xx&&!($ww?preg_match("/^[A-Za-z0-9_-]{18,}+$/",$a):preg_match("/^[A-Za-z0-9\/+]{10,}+$/",$a))){return false;}
+if($xx&&!($ww?preg_match("/^[A-Za-z0-9_-]{18,}$/",$a):preg_match("/^[A-Za-z0-9\/+]{10,}$/",$a))){return false;}
 $c=strlen($a);
 $da=$g=$u=$di=$uu="";
 if($xx){$c-=8;$mm=self::Range_a($c,$c.$mdb,true);$uu=substr($a,$mm,8);$u=Base64_Encrypted::Decrypter($uu,$b,$mdb," ",false,$ww,false);$rho=self::Range_a(67108864,$u.$b,false);$rha=self::Range_a(2080374784,$u,false);$pr=substr($a,-($c-$mm));$a=substr($a,0,$mm).(strlen($pr)==$c+8?"":$pr);}else{$rho=self::Range_a(67108864,$mda.$b,false);$rha=self::Range_a(2080374784,$b.$mda,false);}
